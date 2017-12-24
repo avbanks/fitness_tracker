@@ -16,7 +16,6 @@ class mealTrackStore {
 	@observable dailyMeals = [];
 
 	@action setmealType(value) {
-		console.log('set')
 		this.mealType = value;
 			}
 	@action setbrandName(value) {
