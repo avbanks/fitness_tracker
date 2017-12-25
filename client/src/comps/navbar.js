@@ -10,7 +10,7 @@ class NavBar extends Component {
 	render() {
 		return (
 			<Menu vertical>
-				<Menu.Item name='home'>
+				<Menu.Item name='home' onClick={() => this.handleClick('/')}>
 					Home
 				</Menu.Item>
 				<Dropdown item text="Add Entry">
@@ -22,7 +22,7 @@ class NavBar extends Component {
 			
 					</Dropdown.Menu>
 				</Dropdown>
-				<Menu.Item name='tdee' onClick={() => this.handleClick('/')}>
+				<Menu.Item name='tdee' onClick={() => this.handleClick('/tdee')}>
 					TDEE Calculator	
 				</Menu.Item>
 

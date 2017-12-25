@@ -25,7 +25,7 @@ class App extends Component {
 					</Grid.Column>
 					<Grid.Column width={12} verticalAlign="middle">
 						<Switch>
-							<Route path="/dailysummary" component={DailySummary}/>
+							<Route path="/tdee" component={TdeeForm}/>
 							<Route path="/mealtrack" component={MealTrack}/>
 							<Route path="/watertrack" component={WaterTrack}/>
 							<Route path="/test" component={Test}/>

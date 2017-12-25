@@ -68,12 +68,13 @@ class mealTrackStore {
 	
 	@computed get totalCalories(){
 		console.log('computing.....')
+		console.log(this.dailyMeals)
 		if(this.dailyMeals.length == 0) {
 			return 0	
 		}
 		let cals = 0;
 		for(let i=0; i<this.dailyMeals.length; i++){
-			cals += this.dailyMeals[i].calories
+			cals += parseInt(this.dailyMeals[i].calories)
 		}
 		return cals
 
