@@ -21,7 +21,7 @@ const FirstSection = props => {
 						<Form.Field control={Input} label="Servings per container" placeholder="1" name="setservingsPerContainer"  onChange={ e => { props.selection[e.target.name](e.target.value)}}/>	
 					</Form.Group>
 				</Form>
-				<Button onClick={ () => props.setfirstSection()}>
+				<Button onClick={ (e) => {e.preventDefault(), e.stopPropagation(); props.setfirstSection()}}>
 						Next
 				</Button>
 			</div>
@@ -49,7 +49,7 @@ const SecondSection = props => {
 			<Form.Button onClick={ () => props.setfirstSection()}>
 				Back
 			</Form.Button>
-			<Form.Button type="submit" onClick={(e) => {e.preventDefault();props.onSub()}}>
+			<Form.Button type="Submit" onClick={(e) => {e.preventDefault();props.onSub()}}>
 				Submit
 			</Form.Button>
 			</Form>
@@ -62,23 +62,23 @@ const SecondSection = props => {
 @observer
 class MealTrack extends Component {
 	
-
 	render() {
 		const { mealTrackStore } = this.props
-		const { selection, firstSection, mealCalories,} = mealTrackStore
+		const { selection, firstSection, mealType } = mealTrackStore
 		const onClick = () => {
-					mealTrackStore.setfirstSection()
+					this.props.mealTrackStore.setfirstSection()
 				}
 		const onSubmit = () => {
 			mealTrackStore.setmealSubmit()
+			console.log('clicked')
 		}
 
 		if(firstSection === true) {
-			console.log(mealTrackStore.mealType)
+			console.log(mealType)
 			return <FirstSection selection={selection} setfirstSection={onClick}/>
 		  }
 
-		console.log(mealTrackStore.mealType)
+		console.log(mealType)
 		return (
 			<div>
 				<SecondSection selection={selection} setfirstSection={onClick} onSub={onSubmit}/>

@@ -2,8 +2,8 @@ import { observable, action, computed } from 'mobx';
 
 class mealTrackStore {
 	
-	@observable mealType 
-	@observable brandName 
+	@observable mealType = null;
+	@observable brandName = null;
 	@observable mealDesc = '';
 	@observable servingSize = '';
 	@observable servingsPerContainer = '';
@@ -15,54 +15,59 @@ class mealTrackStore {
 	@observable goalCalories = 0;
 	@observable dailyMeals = [];
 
-	@action setmealType(value) {
+	@action.bound setmealType(value) {
+		console.log('setting meal type')
 		this.mealType = value;
+		console.log(this.mealType)
 			}
-	@action setbrandName(value) {
+	@action.bound setbrandName(value) {
 			this.brandName = value;
 			}
-	@action setmealDesc(value) {
+	@action.bound  setmealDesc(value) {
 				this.mealDesc = value;
 			}
-	@action setservingSize(value) {
+	@action.bound  setservingSize(value) {
 				this.servingSize = value;
 			}
-	@action setservingsPerContainer(value) {
+	@action.bound  setservingsPerContainer(value) {
 				this.servingsPerContainer = value;
 			}
-	@action setmealCalories(value) {
+	@action.bound  setmealCalories(value) {
 				this.mealCalories = value;
 			}
-	@action setmealCarbs(value) {
+	@action.bound  setmealCarbs(value) {
 				this.mealCarbs = value;
 			}
-	@action setmealProtein(value) {
+	@action.bound setmealProtein(value) {
 				this.mealProtein = value;
 			}
-	@action setmealFat(value) {
+	@action.bound  setmealFat(value) {
 				this.mealFat = value;
 			}
-	@action setrecentMeal(values) {
+	@action.bound  setrecentMeal(values) {
 			this.recentMeal = values;
 			}
-	@action setfirstSection() {
+	@action.bound  setfirstSection() {
 		this.firstSection = !this.firstSection;
 			}
-	@action setGoalCalories(value) {
+	@action.bound  setGoalCalories(value) {
 		this.goalCalories = value;
 	}
 
-	@action setmealSubmit() {
+	@action.bound  setmealSubmit() {
 		this.dailyMeals = this.dailyMeals.concat(
 			{timeofday: this.mealType,
 				calories: this.mealCalories
 			}
 		)
-		console.log(this.mealType)
-		console.log(this.dailyMeals[0].timeofday)
+		console.log('here')
+		console.log('wlw',this.mealType)
+		console.log(this.dailyMeals)
+		console.log(this.dailyMeals.length)
 	}
 	
 	@computed get totalCalories(){
+		console.log('computing.....')
 		if(this.dailyMeals.length == 0) {
 			return 0	
 		}

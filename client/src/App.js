@@ -29,7 +29,7 @@ class App extends Component {
 							<Route path="/mealtrack" component={MealTrack}/>
 							<Route path="/watertrack" component={WaterTrack}/>
 							<Route path="/test" component={Test}/>
-							<Route path="/" component={TdeeForm}/>
+							<Route path="/" component={DailySummary}/>
 						</Switch>
 					</Grid.Column>
 			</Grid>
