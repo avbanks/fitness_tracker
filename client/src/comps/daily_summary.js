@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Label, Button, Message, Header, Segment, Image, Grid }  from 'semantic-ui-react';
 import { inject, observer} from 'mobx-react';
 
-@inject('mealTrackStore')
+@inject('mealTrackStore','measStore')
 @observer
 class DailySummary extends Component {
 
@@ -23,7 +23,7 @@ class DailySummary extends Component {
 								Calories Remaining:
 							</Header>
 							<Label size="massive">
-								{this.props.mealTrackStore.totalCalories}	
+								{this.props.measStore.calorieGoals - this.props.mealTrackStore.totalCalories}	
 							</Label>
 							
 						</Grid.Column>

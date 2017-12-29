@@ -14,11 +14,9 @@ class mealTrackStore {
 	@observable firstSection = true;
 	@observable goalCalories = 0;
 	@observable dailyMeals = [];
-
+	
 	@action.bound setmealType(value) {
-		console.log('setting meal type')
 		this.mealType = value;
-		console.log(this.mealType)
 			}
 	@action.bound setbrandName(value) {
 			this.brandName = value;
@@ -56,19 +54,35 @@ class mealTrackStore {
 
 	@action.bound  setmealSubmit() {
 		this.dailyMeals = this.dailyMeals.concat(
-			{timeofday: this.mealType,
-				calories: this.mealCalories
+			{	entryTime:  new Date().getTime(),
+				timeofday: this.mealType,
+				calories: this.mealCalories,
+				brandName: this.brandName,
+				mealDesc: this.mealDesc,
+				servingSize: this.servingSize,
+				servingsPerContainer: this.servingsPerContainer,
+				totalCarbs: this.mealCarbs,
+				totalProtein: this.mealProtein,
+				totalFat: this.mealFat
 			}
 		)
-		console.log('here')
-		console.log('wlw',this.mealType)
-		console.log(this.dailyMeals)
-		console.log(this.dailyMeals.length)
 	}
 	
+	@action.bound resetStore() {
+		this.timeofday = null;
+		this.calories = null;
+		this.brandName = null;
+		this.mealDesc = null;
+		this.servingSize = null;
+		this.setservingsPerContainer = null;
+		this.mealCarbs = null;
+		this.mealProtein = null;
+		this.mealFat = null;
+		this.firstSection = !this.firstSection
+	}
+	
+	
 	@computed get totalCalories(){
-		console.log('computing.....')
-		console.log(this.dailyMeals)
 		if(this.dailyMeals.length == 0) {
 			return 0	
 		}
@@ -77,8 +91,8 @@ class mealTrackStore {
 			cals += parseInt(this.dailyMeals[i].calories)
 		}
 		return cals
-
 	}
+	
 	selection = { 
 		"setmealType": this.setmealType,
 		"setbrandName": this.setbrandName,
@@ -92,9 +106,6 @@ class mealTrackStore {
 		"setfirstSection": this.setfirstSection,
 		"mealSubmit": this.mealSubmit
 	}
-
-	
 }
-
 
 export default new mealTrackStore()

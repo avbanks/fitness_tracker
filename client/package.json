@@ -8,6 +8,7 @@
     "mobx-react": "^4.3.5",
     "moment": "^2.20.1",
     "promise.prototype.finally": "^3.1.0",
+    "rc-datepicker": "^5.0.10",
     "react": "^16.1.1",
     "react-datepicker": "^0.64.0",
     "react-dom": "^16.1.1",

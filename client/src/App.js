@@ -10,6 +10,7 @@ import NavBar from './comps/navbar';
 import Test from './comps/test';
 import WaterTrack from './comps/water_track';
 import DailySummary from './comps/daily_summary';
+import MeasTrack from './comps/measureTrack';
 //devtools
 import DevTools from 'mobx-react-devtools';
 
@@ -27,6 +28,7 @@ class App extends Component {
 						<Switch>
 							<Route path="/tdee" component={TdeeForm}/>
 							<Route path="/mealtrack" component={MealTrack}/>
+							<Route path="/meastrack" component={MeasTrack}/>
 							<Route path="/watertrack" component={WaterTrack}/>
 							<Route path="/test" component={Test}/>
 							<Route path="/" component={DailySummary}/>

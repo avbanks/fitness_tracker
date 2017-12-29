@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, Input, Radio, Select, Header } from 'semantic-ui-react';
+import { Button, Form, Input, Radio, Select, Header, Table } from 'semantic-ui-react';
 import { observer, inject } from 'mobx-react';
 
 const options = [
@@ -58,6 +58,28 @@ const SecondSection = props => {
 		
 }
 
+const RecentMeals = props => {
+
+	return(
+		<Table celled padded>
+			<Table.Header>
+				<Table.Row>
+					<Table.HeaderCell>Meal</Table.HeaderCell>
+					<Table.HeaderCell>Calories </Table.HeaderCell>
+				</Table.Row>
+			</Table.Header>
+				{ return props.mealTrackStore.dailyMeals ? null : 
+					(props.mealTrackStore.dailyMeals.map((items) =>
+					<Table.Row>
+						<Table.Cell>{items['timeofday']}</Table.Cell>
+						<Table.Cell>{items['calories']}</Table.Cell>
+					</Table.Row>)
+				)
+				}
+		</Table>
+	)
+}
+
 @inject('mealTrackStore','testStore')
 @observer
 class MealTrack extends Component {
@@ -70,18 +92,23 @@ class MealTrack extends Component {
 				}
 		const onSubmit = () => {
 			mealTrackStore.setmealSubmit()
-			console.log('clicked')
+			mealTrackStore.resetStore()
 		}
 
 		if(firstSection === true) {
 			console.log(mealType)
-			return <FirstSection selection={selection} setfirstSection={onClick}/>
+			return 
+				<div>
+					<FirstSection selection={selection} setfirstSection={onClick}/>
+					<RecentMeals mealTrackStore={mealTrackStore}/>
+				</div>
 		  }
 
 		console.log(mealType)
 		return (
 			<div>
 				<SecondSection selection={selection} setfirstSection={onClick} onSub={onSubmit}/>
+				<RecentMeals mealTrackStore={mealTrackStore}/>
 			</div>
 		)
 			}

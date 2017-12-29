@@ -11,12 +11,14 @@ import tdeeStore from './stores/tdeeStore';
 import mealTrackStore from './stores/mealStore';
 import testStore from './stores/testStore';
 import waterStore from './stores/waterStore';
+import measStore from './stores/measStore';
 
 const stores = {
 	tdeeStore,
 	mealTrackStore,
 	testStore,
-	waterStore
+	waterStore,
+	measStore
 };
 
 window.__APP_STATE__= stores;

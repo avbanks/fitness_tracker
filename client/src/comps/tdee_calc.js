@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
-import { Button, Form, Input, Radio } from 'semantic-ui-react';
+import { Button, Form, Input, Grid, Radio } from 'semantic-ui-react';
 import { observer, inject } from 'mobx-react';
 import { Link } from 'react-router-dom';
 
-@inject('tdeeStore')
+@inject('tdeeStore', 'measStore')
 @observer
 class TdeeForm extends Component {
 	render() {
-		const { tdeeStore } = this.props
-		let value = this.props.tdeeStore.value
-		let handleChange = (e, { value }) => { this.props.tdeeStore.setValue(value)}
-		let handleInputChange = (e, { value }) => {this.props.tdeeStore.setBodyweight(value)}
+		const { tdeeStore, measStore } = this.props
+		const value = this.props.tdeeStore.value
+		const handleChange = (e, { value }) => { this.props.tdeeStore.setValue(value)}
+		const handleInputChange = (e, { value }) => {this.props.tdeeStore.setBodyweight(value)}
+		const handleMeasChange = (e, {name, value}) => {this.props.measStore.selection[name](value)}
+
 		return (
-			<div>
+			<Grid>
+				<Grid.Row>
+					<Grid.Column width={4}>
 				<Form>
 					<Form.Group>
 						<Form.Field control={Input} onChange={handleInputChange} label='Enter Bodyweight' placeholder='lbs'/>			
@@ -30,7 +34,18 @@ class TdeeForm extends Component {
 						<Form.Field control={Input} readOnly value={this.props.tdeeStore.totalCals} label='Estimated Daily Calories'/>	
 					</Form.Group>
 				</Form>
-			</div>
+					</Grid.Column>
+					<Grid.Column width={4}>
+						<Form onSubmit={() => { measStore.setCalorieGoals(document.querySelector("[name='setCalorieGoals']").value);measStore.setTargetWeight(document.querySelector("[name='setTargetWeight']").value)}}>
+							<Form.Input label={'Target Daily Calories'} name={'setCalorieGoals'} />
+							<Form.Input label={'Target Weight'} name={'setTargetWeight'} />
+							<Form.Button> 
+								Set Targets	
+							</Form.Button>
+						</Form>
+					</Grid.Column>
+				</Grid.Row>
+			</Grid>
 		)
 	}
 }

@@ -18,7 +18,7 @@ class NavBar extends Component {
 						<Dropdown.Item icon='tint' text='Water' onClick={() => this.handleClick('watertrack')}/>
 						<Dropdown.Item icon='food' text='Food'onClick={() => this.handleClick('mealtrack')}/>
 						<Dropdown.Item icon='bicycle' text='Exercise' onClick={()=> this.handleClick('/')}/>
-						<Dropdown.Item icon='area graph' text='Weight' onClick={()=> this.handleClick('/')}/>
+						<Dropdown.Item icon='area graph' text='Weight' onClick={()=> this.handleClick('meastrack')}/>
 			
 					</Dropdown.Menu>
 				</Dropdown>
