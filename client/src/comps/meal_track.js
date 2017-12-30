@@ -68,14 +68,16 @@ const RecentMeals = props => {
 					<Table.HeaderCell>Calories </Table.HeaderCell>
 				</Table.Row>
 			</Table.Header>
-				{ return props.mealTrackStore.dailyMeals ? null : 
-					(props.mealTrackStore.dailyMeals.map((items) =>
-					<Table.Row>
-						<Table.Cell>{items['timeofday']}</Table.Cell>
-						<Table.Cell>{items['calories']}</Table.Cell>
-					</Table.Row>)
-				)
-				}
+				<Table.Body>
+					{ props.mealTrackStore.dailyMeals ? null : 
+						props.mealTrackStore.dailyMeals.map((items) =>
+							<Table.Row>
+								<Table.Cell>{items['caloris']}</Table.Cell>
+								<Table.Cell>{items['timeofday']}</Table.Cell>
+							</Table.Row>
+						)
+					}
+				</Table.Body>
 		</Table>
 	)
 }
@@ -97,11 +99,12 @@ class MealTrack extends Component {
 
 		if(firstSection === true) {
 			console.log(mealType)
-			return 
+			return (
 				<div>
 					<FirstSection selection={selection} setfirstSection={onClick}/>
 					<RecentMeals mealTrackStore={mealTrackStore}/>
 				</div>
+			)
 		  }
 
 		console.log(mealType)

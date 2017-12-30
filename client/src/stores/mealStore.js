@@ -66,6 +66,8 @@ class mealTrackStore {
 				totalFat: this.mealFat
 			}
 		)
+		console.log('added meals')
+		console.log(this.dailyMeals)
 	}
 	
 	@action.bound resetStore() {
