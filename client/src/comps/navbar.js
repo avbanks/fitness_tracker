@@ -1,18 +1,61 @@
 import React, { Component } from 'react';
-import { Menu, Dropdown, Icon } from 'semantic-ui-react';
+import { Menu, Modal, Dropdown, Icon } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
+import { inject, observer } from 'mobx-react';
+import firebase, { auth, provider } from '../stores/firebase';
 
+
+@inject('authStore')
 @withRouter
+@observer
 class NavBar extends Component {
+	/*constructor(props) {
+		super(props)
+		this.handleClick.bind(this);
+		this.handleLogin.bind(this);
+	}*/
 	
-	handleClick = (path) => this.props.history.push(path)
+	handleClick(path) {
+		this.props.history.push(path)
+	}
+	
+	handleLogin(email,password) {
+		this.props.authStore.login(email,password)
+	}
 
+	handleLogOut() {
+		this.props.authStore.logOut()	
+	}
+	
+	componentDidMount() {
+		auth.onAuthStateChanged((user) => {
+			if(user){
+				this.props.authStore.setUser(user)
+			}
+			else{
+				this.props.authStore.setUser(null)
+			}
+		})
+	}
+	
 	render() {
 		return (
 			<Menu vertical>
 				<Menu.Item name='home' onClick={() => this.handleClick('/')}>
 					Home
 				</Menu.Item>
+				{ !this.props.authStore.user ? 
+				<Modal
+					trigger={<Menu.Item name='login' onClick={(e) =>{ e.preventDefault(); this.handleLogin('andrebanks.ab@gmail.com','Georgia22')}}>
+					Login	
+				</Menu.Item>}
+					header='testsss'
+					content={<input></input>}
+					/> :
+					<Menu.Item onClick={(e) =>{ e.preventDefault(); this.handleLogOut()}}>
+						Logout
+					</Menu.Item>
+				}
 				<Dropdown item text="Add Entry">
 					<Dropdown.Menu>
 						<Dropdown.Item icon='tint' text='Water' onClick={() => this.handleClick('watertrack')}/>
@@ -25,11 +68,9 @@ class NavBar extends Component {
 				<Menu.Item name='tdee' onClick={() => this.handleClick('/tdee')}>
 					TDEE Calculator	
 				</Menu.Item>
-
 				<Menu.Item name='profile'>
 					Profile	
 				</Menu.Item>
-				
 			</Menu>
 		)
 	}
