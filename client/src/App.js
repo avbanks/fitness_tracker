@@ -11,6 +11,7 @@ import Test from './comps/test';
 import WaterTrack from './comps/water_track';
 import DailySummary from './comps/daily_summary';
 import MeasTrack from './comps/measureTrack';
+import LoginReg from './comps/login_reg';
 //devtools
 import DevTools from 'mobx-react-devtools';
 
@@ -26,6 +27,7 @@ class App extends Component {
 					</Grid.Column>
 					<Grid.Column width={12} verticalAlign="middle">
 						<Switch>
+							<Route path="/loginreg" component={LoginReg}/>
 							<Route path="/tdee" component={TdeeForm}/>
 							<Route path="/mealtrack" component={MealTrack}/>
 							<Route path="/meastrack" component={MeasTrack}/>

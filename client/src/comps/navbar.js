@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Menu, Modal, Dropdown, Icon } from 'semantic-ui-react';
+import { Menu, Dropdown, Icon } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
 import { inject, observer } from 'mobx-react';
 import firebase, { auth, provider } from '../stores/firebase';
@@ -29,7 +29,7 @@ class NavBar extends Component {
 	
 	componentDidMount() {
 		auth.onAuthStateChanged((user) => {
-			if(user){
+			if(user) {
 				this.props.authStore.setUser(user)
 			}
 			else{
@@ -44,33 +44,30 @@ class NavBar extends Component {
 				<Menu.Item name='home' onClick={() => this.handleClick('/')}>
 					Home
 				</Menu.Item>
-				{ !this.props.authStore.user ? 
-				<Modal
-					trigger={<Menu.Item name='login' onClick={(e) =>{ e.preventDefault(); this.handleLogin('andrebanks.ab@gmail.com','Georgia22')}}>
-					Login	
-				</Menu.Item>}
-					header='testsss'
-					content={<input></input>}
-					/> :
-					<Menu.Item onClick={(e) =>{ e.preventDefault(); this.handleLogOut()}}>
-						Logout
-					</Menu.Item>
-				}
+				{ this.props.authStore.user ? 
+				<span>
+				<Menu.Item onClick={(e) =>{this.handleLogOut()}}>
+					Logout
+				</Menu.Item> 
 				<Dropdown item text="Add Entry">
-					<Dropdown.Menu>
-						<Dropdown.Item icon='tint' text='Water' onClick={() => this.handleClick('watertrack')}/>
-						<Dropdown.Item icon='food' text='Food'onClick={() => this.handleClick('mealtrack')}/>
-						<Dropdown.Item icon='bicycle' text='Exercise' onClick={()=> this.handleClick('/')}/>
-						<Dropdown.Item icon='area graph' text='Weight' onClick={()=> this.handleClick('meastrack')}/>
-			
-					</Dropdown.Menu>
+				<Dropdown.Menu>
+					<Dropdown.Item icon='tint' text='Water' onClick={() => this.handleClick('watertrack')}/>
+					<Dropdown.Item icon='food' text='Food'onClick={() => this.handleClick('mealtrack')}/>
+					<Dropdown.Item icon='bicycle' text='Exercise' onClick={()=> this.handleClick('/')}/>
+					<Dropdown.Item icon='area graph' text='Weight' onClick={()=> this.handleClick('meastrack')}/>
+				</Dropdown.Menu>
 				</Dropdown>
 				<Menu.Item name='tdee' onClick={() => this.handleClick('/tdee')}>
-					TDEE Calculator	
+						TDEE Calculator	
 				</Menu.Item>
 				<Menu.Item name='profile'>
-					Profile	
+						Profile	
 				</Menu.Item>
+				</span>:
+				<Menu.Item name='login' onClick={() =>{this.handleClick('loginreg')}}>
+					Login/Register	
+				</Menu.Item> 
+				}
 			</Menu>
 		)
 	}
