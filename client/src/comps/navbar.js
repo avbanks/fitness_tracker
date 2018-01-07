@@ -28,6 +28,7 @@ class NavBar extends Component {
 	}
 	
 	componentDidMount() {
+		//this should be moved to App.js??
 		auth.onAuthStateChanged((user) => {
 			if(user) {
 				this.props.authStore.setUser(user)
@@ -41,33 +42,30 @@ class NavBar extends Component {
 	render() {
 		return (
 			<Menu vertical>
-				<Menu.Item name='home' onClick={() => this.handleClick('/')}>
+				<Menu.Header name='home' onClick={() => this.handleClick('/')}>
 					Home
-				</Menu.Item>
+				</Menu.Header>
 				{ this.props.authStore.user ? 
-				<span>
-				<Menu.Item onClick={(e) =>{this.handleLogOut()}}>
-					Logout
-				</Menu.Item> 
-				<Dropdown item text="Add Entry">
-				<Dropdown.Menu>
-					<Dropdown.Item icon='tint' text='Water' onClick={() => this.handleClick('watertrack')}/>
-					<Dropdown.Item icon='food' text='Food'onClick={() => this.handleClick('mealtrack')}/>
-					<Dropdown.Item icon='bicycle' text='Exercise' onClick={()=> this.handleClick('/')}/>
-					<Dropdown.Item icon='area graph' text='Weight' onClick={()=> this.handleClick('meastrack')}/>
-				</Dropdown.Menu>
-				</Dropdown>
-				<Menu.Item name='tdee' onClick={() => this.handleClick('/tdee')}>
-						TDEE Calculator	
-				</Menu.Item>
-				<Menu.Item name='profile'>
-						Profile	
-				</Menu.Item>
-				</span>:
-				<Menu.Item name='login' onClick={() =>{this.handleClick('loginreg')}}>
-					Login/Register	
-				</Menu.Item> 
-				}
+					<div>
+					<Dropdown item text="Add Entry">
+					<Dropdown.Menu>
+						<Dropdown.Item icon='tint' text='Water' onClick={() => this.handleClick('watertrack')}/>
+						<Dropdown.Item icon='food' text='Food'onClick={() => this.handleClick('mealtrack')}/>
+						<Dropdown.Item icon='bicycle' text='Exercise' onClick={()=> this.handleClick('/')}/>
+						<Dropdown.Item icon='area graph' text='Weight' onClick={()=> this.handleClick('meastrack')}/>
+					</Dropdown.Menu>
+					</Dropdown>
+					<Menu.Item name='tdee' onClick={() => this.handleClick('/tdee')}>
+							TDEE Calculator	
+					</Menu.Item>
+					<Menu.Item name='profile'>
+							Profile	
+					</Menu.Item>
+					<Menu.Item onClick={(e) =>{this.handleLogOut()}}>
+						Logout
+					</Menu.Item> 
+				</div>
+					:null }
 			</Menu>
 		)
 	}

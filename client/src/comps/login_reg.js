@@ -1,16 +1,23 @@
 import React, { Component } from 'react';
-import { Form, Message } from 'semantic-ui-react';
+import { Form, Message, Button } from 'semantic-ui-react';
 import { observer, inject } from 'mobx-react';
+import { withRouter } from 'react-router-dom';
 
 const LoginForm = (props) => {
+	
+	const SubmitButton = withRouter(({ history, ...props }) => (
+		<Button
+			onClick={() => { props.handleSubmit(); console.log('2'); history.push('dailysummary')}}
+		>
+			Login	
+		</Button>
+	))
 	
 	return (	
 		<Form>
 				<Form.Input label="Email" name="email" onChange={props.handleChange}/>
 				<Form.Input label="Password" name="password" type="password" onChange={props.handleChange}/>
-				<Form.Button onClick={props.handleSubmit}>
-					Login
-				</Form.Button>
+				<SubmitButton handleSubmit={props.handleSubmit}/>
 				<Message>
 					Not a member? <div onClick={props.handleSwitch} style={{"cursor":"pointer"}}><a> Register </a></div>
 				</Message>
@@ -32,11 +39,13 @@ const RegisterForm = (props) => {
 
 
 @inject('authStore')
+@withRouter
 @observer
 class LoginReg extends Component {
 
 	handleSubmit() {
 		this.props.authStore.login()
+		console.log('1')
 	}
 
 	handleChange(name,value) {
