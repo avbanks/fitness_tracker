@@ -4,7 +4,6 @@ import { withRouter } from 'react-router-dom';
 import { inject, observer } from 'mobx-react';
 import firebase, { auth, provider } from '../stores/firebase';
 
-
 @inject('authStore')
 @withRouter
 @observer
@@ -32,6 +31,7 @@ class NavBar extends Component {
 		auth.onAuthStateChanged((user) => {
 			if(user) {
 				this.props.authStore.setUser(user)
+				console.log('userSet')
 			}
 			else{
 				this.props.authStore.setUser(null)

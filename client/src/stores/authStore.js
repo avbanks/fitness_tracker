@@ -10,18 +10,18 @@ class authStore {
 	
 	@action.bound setUser(user) {
 		this.user = user
+		console.log('2')
 	}
 	
 	@action.bound login() {
-		auth.signInWithEmailAndPassword(this.email, this.password).then((result) =>
-			{ this.setUser(result) }
-		)
+		console.log('login')
+		auth.signInWithEmailAndPassword(this.email, this.password)
 	}
 
 	@action.bound logOut() {
 		auth.signOut().then(() =>
 			{
-				this.setUser(null)	
+				console.log('Out')
 			})
 	}
 	

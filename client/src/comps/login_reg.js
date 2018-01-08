@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import { Form, Message, Button } from 'semantic-ui-react';
 import { observer, inject } from 'mobx-react';
 import { withRouter } from 'react-router-dom';
+import firebase, { auth } from '../stores/firebase.js';
 
 const LoginForm = (props) => {
 	
-	const SubmitButton = withRouter(({ history, ...props }) => (
+	const SubmitButton = withRouter(({ history, ...props }) =>
+		(
 		<Button
-			onClick={() => { props.handleSubmit(); console.log('2'); history.push('dailysummary')}}
+			onClick={() => { props.handleSubmit(history.push('/dailysummary'))}}
 		>
 			Login	
 		</Button>
@@ -42,10 +44,17 @@ const RegisterForm = (props) => {
 @withRouter
 @observer
 class LoginReg extends Component {
+	
 
 	handleSubmit() {
-		this.props.authStore.login()
-		console.log('1')
+		const { email, password } = this.props.authStore
+		console.log(email,password)
+		auth.signInWithEmailAndPassword(email,password)
+			.then((user) => { 
+				this.props.authStore.setUser(user); console.log(user)
+			}).then(() => {
+				this.props.history.push('/dailysummary')
+			})
 	}
 
 	handleChange(name,value) {
