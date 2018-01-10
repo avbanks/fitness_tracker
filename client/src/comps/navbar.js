@@ -18,7 +18,6 @@ class NavBar extends Component {
 		this.props.history.push(path)
 	}
 	
-
 	handleLogOut() {
 		console.log(this.props.authStore.user)
 		console.log('handleLogOut')
