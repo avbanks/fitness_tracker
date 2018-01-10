@@ -26,7 +26,7 @@ class App extends Component {
 	
 	componentDidMount() {
 	const { authStore } = this.props		
-	console.log('yoooo')
+	console.log('yoooo',authStore.user)
 	auth.onAuthStateChanged(user => {
 		user
 		? authStore.setUser(user)
@@ -49,7 +49,7 @@ class App extends Component {
 							<Route path="/meastrack" component={MeasTrack}/>
 							<Route path="/watertrack" component={WaterTrack}/>
 							<Route path="/test" component={Test}/>
-							<PrivateRoute path="/dailysummary" component={DailySummary}/>
+							<Route path="/dailysummary" component={DailySummary}/>
 							<Route path="/" component={LoginReg}/>
 						</Switch>
 					</Grid.Column>

@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Label, Button, Message, Header, Segment, Image, Grid }  from 'semantic-ui-react';
 import { inject, observer} from 'mobx-react';
+import withAuthorization from './sessionAccess';
 
 @inject('mealTrackStore','measStore')
 @observer
 class DailySummary extends Component {
-
 	render() {
 		return (
 			<div>
@@ -41,4 +41,4 @@ class DailySummary extends Component {
 }
 
 
-export default DailySummary
+export default withAuthorization(DailySummary)
