@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import { observer, inject } from 'mobx-react';
 import { Switch, Redirect, Route, withRouter } from 'react-router-dom';
 import { Grid } from 'semantic-ui-react';
+import firebase, { auth } from './stores/firebase';
 //components
 import TdeeForm from './comps/tdee_calc';
 import MealTrack from './comps/meal_track';
@@ -18,10 +19,22 @@ import withAuthentication from './comps/session';
 import DevTools from 'mobx-react-devtools';
 
 @inject('authStore')
-@withRouter
 @withAuthentication
+@withRouter
 @observer
 class App extends Component {
+	
+	componentDidMount() {
+	const { authStore } = this.props		
+	console.log('yoooo')
+	auth.onAuthStateChanged(user => {
+		user
+		? authStore.setUser(user)
+		: authStore.setUser(null);
+		console.log('here')
+		});	
+	}
+
   render() {
     return (
 			<Grid>	

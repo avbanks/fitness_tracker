@@ -5,7 +5,7 @@ import firebase, { auth } from '../stores/firebase';
 const withAuthentication = (Component) => {
 	@inject('authStore')
 	class WithAuthentication extends Component {
-		ComponentDidMount() {
+		componentDidMount() {
 			const { authStore } = this.props 		
 			console.log('yoooo')
 			auth.onAuthStateChanged(user => {
@@ -21,7 +21,6 @@ const withAuthentication = (Component) => {
 			)
 		}
 	}
-	return inject(WithAuthentication)
 }
 export default withAuthentication;
 
