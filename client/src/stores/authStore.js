@@ -9,8 +9,8 @@ class authStore {
 	@observable loginForm = true;
 	
 	@action.bound setUser(user) {
+		console.log('user set')
 		this.user = user
-		console.log('2')
 	}
 	
 	@action.bound login() {
@@ -19,10 +19,7 @@ class authStore {
 	}
 
 	@action.bound logOut() {
-		auth.signOut().then(() =>
-			{
-				console.log('Out')
-			})
+		auth.signOut()
 	}
 	
 	@action.bound setEmail(email) {

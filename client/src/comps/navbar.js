@@ -18,25 +18,12 @@ class NavBar extends Component {
 		this.props.history.push(path)
 	}
 	
-	handleLogin(email,password) {
-		this.props.authStore.login(email,password)
-	}
 
 	handleLogOut() {
-		this.props.authStore.logOut()	
-	}
-	
-	componentDidMount() {
-		//this should be moved to App.js??
-		auth.onAuthStateChanged((user) => {
-			if(user) {
-				this.props.authStore.setUser(user)
-				console.log('userSet')
-			}
-			else{
-				this.props.authStore.setUser(null)
-			}
-		})
+		console.log(this.props.authStore.user)
+		console.log('handleLogOut')
+		auth.signOut()
+		console.log(this.props.authStore.user)
 	}
 	
 	render() {
@@ -61,7 +48,7 @@ class NavBar extends Component {
 					<Menu.Item name='profile'>
 							Profile	
 					</Menu.Item>
-					<Menu.Item onClick={(e) =>{this.handleLogOut()}}>
+					<Menu.Item onClick={() => { console.log('click'); this.handleLogOut()}}>
 						Logout
 					</Menu.Item> 
 				</div>

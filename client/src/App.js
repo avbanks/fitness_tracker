@@ -13,11 +13,13 @@ import DailySummary from './comps/daily_summary';
 import MeasTrack from './comps/measureTrack';
 import LoginReg from './comps/login_reg';
 import PrivateRoute from './comps/private_route';
+import withAuthentication from './comps/session';
 //devtools
 import DevTools from 'mobx-react-devtools';
 
 @inject('authStore')
 @withRouter
+@withAuthentication
 @observer
 class App extends Component {
   render() {
