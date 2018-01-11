@@ -19,10 +19,7 @@ class NavBar extends Component {
 	}
 	
 	handleLogOut() {
-		console.log(this.props.authStore.user)
-		console.log('handleLogOut')
 		auth.signOut()
-		console.log(this.props.authStore.user)
 	}
 	
 	render() {

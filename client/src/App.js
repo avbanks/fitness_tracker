@@ -14,14 +14,12 @@ import DailySummary from './comps/daily_summary';
 import MeasTrack from './comps/measureTrack';
 import LoginReg from './comps/login_reg';
 import PrivateRoute from './comps/private_route';
-import withAuthentication from './comps/session';
 //constants
 import * as routes from './constants/routes';
 //devtools
 import DevTools from 'mobx-react-devtools';
 
 @inject('authStore')
-@withAuthentication
 @withRouter
 @observer
 class App extends Component {
@@ -52,7 +50,7 @@ class App extends Component {
 							<Route path={routes.WATERTRACK} component={WaterTrack}/>
 							<Route path="/test" component={Test}/>
 							<Route path={routes.DAILYSUMMARY} component={DailySummary}/>
-							<Route path={routes.HOME} component={LoginReg}/>
+							<Route path={routes.LOGINREG} component={LoginReg}/>
 						</Switch>
 					</Grid.Column>
 			</Grid>

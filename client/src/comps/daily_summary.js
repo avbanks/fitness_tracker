@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Label, Button, Message, Header, Segment, Image, Grid }  from 'semantic-ui-react';
 import { inject, observer} from 'mobx-react';
-import withAuthorization from './sessionAccess';
+import withAuthorization from './sessionAcc';
+import { compose } from 'recompose';
 
 @inject('mealTrackStore','measStore')
 @observer
@@ -40,5 +41,6 @@ class DailySummary extends Component {
 	}
 }
 
+const authCondition = authUser => !!authUser;
 
-export default withAuthorization(DailySummary)
+export default compose(withAuthorization(authCondition))(DailySummary)

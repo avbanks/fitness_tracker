@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Button, Form, Input, Radio, Select, Header, Table } from 'semantic-ui-react';
 import { observer, inject } from 'mobx-react';
+import { compose } from 'recompose';
+import withAuthorization from './sessionAcc';
 
 const options = [
 	{ key: 'Breakfast', text: 'Breakfast', value: 'Breakfast' },
@@ -117,4 +119,6 @@ class MealTrack extends Component {
 			}
 }
 
-export default MealTrack	
+const authCondition = authUser => !!authUser;
+
+export default compose(withAuthorization(authCondition))(MealTrack)

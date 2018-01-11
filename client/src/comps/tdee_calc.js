@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Button, Form, Input, Grid, Radio } from 'semantic-ui-react';
 import { observer, inject } from 'mobx-react';
 import { Link } from 'react-router-dom';
+import withAuthorization from './sessionAcc';
+import { compose } from 'recompose';
 
 @inject('tdeeStore', 'measStore')
 @observer
@@ -50,5 +52,7 @@ class TdeeForm extends Component {
 	}
 }
 
-export default TdeeForm
+const authCondition = authUser => !!authUser;
+
+export default compose(withAuthorization(authCondition))(TdeeForm)
 
