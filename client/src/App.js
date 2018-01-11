@@ -15,6 +15,8 @@ import MeasTrack from './comps/measureTrack';
 import LoginReg from './comps/login_reg';
 import PrivateRoute from './comps/private_route';
 import withAuthentication from './comps/session';
+//constants
+import * as routes from './constants/routes';
 //devtools
 import DevTools from 'mobx-react-devtools';
 
@@ -44,13 +46,13 @@ class App extends Component {
 					</Grid.Column>
 					<Grid.Column width={12} verticalAlign="middle">
 						<Switch>
-							<Route path="/tdee" component={TdeeForm}/>
-							<Route path="/mealtrack" component={MealTrack}/>
-							<Route path="/meastrack" component={MeasTrack}/>
-							<Route path="/watertrack" component={WaterTrack}/>
+							<Route path={routes.TDEE} component={TdeeForm}/>
+							<Route path={routes.MEALTRACK} component={MealTrack}/>
+							<Route path={routes.MEASTRACK} component={MeasTrack}/>
+							<Route path={routes.WATERTRACK} component={WaterTrack}/>
 							<Route path="/test" component={Test}/>
-							<Route path="/dailysummary" component={DailySummary}/>
-							<Route path="/" component={LoginReg}/>
+							<Route path={routes.DAILYSUMMARY} component={DailySummary}/>
+							<Route path={routes.HOME} component={LoginReg}/>
 						</Switch>
 					</Grid.Column>
 			</Grid>
