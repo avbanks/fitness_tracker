@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
 import { Table, Button, Input, Form, Icon } from 'semantic-ui-react';
 import moment from 'moment'
+import { compose } from 'recompose';
+import withAuthorization from './sessionAcc';
 
 @inject('measStore')
 @observer
@@ -56,5 +58,7 @@ class MeasTrack extends Component{
 	
 }
 
-export default MeasTrack
+const authCondition = authUser => !!authUser;
+
+export default compose(withAuthorization(authCondition))(MeasTrack)
 

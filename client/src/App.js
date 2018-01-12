@@ -49,8 +49,8 @@ class App extends Component {
 							<Route path={routes.MEASTRACK} component={MeasTrack}/>
 							<Route path={routes.WATERTRACK} component={WaterTrack}/>
 							<Route path="/test" component={Test}/>
-							<Route path={routes.DAILYSUMMARY} component={DailySummary}/>
 							<Route path={routes.LOGINREG} component={LoginReg}/>
+							<Route path={routes.HOME} component={DailySummary}/>
 						</Switch>
 					</Grid.Column>
 			</Grid>

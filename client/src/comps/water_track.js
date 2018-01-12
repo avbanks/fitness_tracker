@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Input, Button, Grid } from 'semantic-ui-react';
 import { inject, observer } from 'mobx-react'
+import { compose } from 'recompose'
+import withAuthorization from './sessionAcc'
 
 @inject('waterStore')
 @observer
@@ -33,4 +35,6 @@ class WaterTrack extends Component {
 	}
 }
 
-export default WaterTrack
+const authCondition = authUser => !!authUser;
+
+export default compose(withAuthorization(authCondition))(WaterTrack)

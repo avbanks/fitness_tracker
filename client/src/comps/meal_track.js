@@ -60,8 +60,10 @@ const SecondSection = props => {
 		
 }
 
-const RecentMeals = props => {
-
+@inject('mealTrackStore')
+@observer
+class RecentMeals extends Component {
+	render() {
 	return(
 		<Table celled padded>
 			<Table.Header>
@@ -71,17 +73,18 @@ const RecentMeals = props => {
 				</Table.Row>
 			</Table.Header>
 				<Table.Body>
-					{ props.mealTrackStore.dailyMeals ? null : 
-						props.mealTrackStore.dailyMeals.map((items) =>
+					{ !this.props.mealTrackStore.dailyMeals ? null : 
+						this.props.mealTrackStore.dailyMeals.map((items) =>
 							<Table.Row>
-								<Table.Cell>{items['caloris']}</Table.Cell>
 								<Table.Cell>{items['timeofday']}</Table.Cell>
+								<Table.Cell>{items['calories']}</Table.Cell>
 							</Table.Row>
 						)
 					}
 				</Table.Body>
 		</Table>
 	)
+	}
 }
 
 @inject('mealTrackStore','testStore')
@@ -104,7 +107,7 @@ class MealTrack extends Component {
 			return (
 				<div>
 					<FirstSection selection={selection} setfirstSection={onClick}/>
-					<RecentMeals mealTrackStore={mealTrackStore}/>
+					<RecentMeals/>
 				</div>
 			)
 		  }
@@ -113,7 +116,6 @@ class MealTrack extends Component {
 		return (
 			<div>
 				<SecondSection selection={selection} setfirstSection={onClick} onSub={onSubmit}/>
-				<RecentMeals mealTrackStore={mealTrackStore}/>
 			</div>
 		)
 			}
