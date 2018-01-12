@@ -1,4 +1,6 @@
 import { observable, action, computed } from 'mobx';
+import shortid from 'shortid';
+
 
 class mealTrackStore {
 	
@@ -54,7 +56,9 @@ class mealTrackStore {
 
 	@action.bound  setmealSubmit() {
 		this.dailyMeals = this.dailyMeals.concat(
-			{	entryTime:  new Date().getTime(),
+			{	
+				id: shortid.generate(),	
+				entryTime:  new Date().getTime(),
 				timeofday: this.mealType,
 				calories: this.mealCalories,
 				brandName: this.brandName,
@@ -66,7 +70,18 @@ class mealTrackStore {
 				totalFat: this.mealFat
 			}
 		)
-		console.log('added meals')
+	}
+
+	@action.bound deleteMeal(id) {
+		console.log('click')
+		let meals = this.dailyMeals	
+		for(let i=0; i<meals.length; i++) {
+			if(meals[i]['id'] == id) {
+				meals.splice(i,1)			
+				return
+			}
+		}
+		this.dailyMeals = meals
 		console.log(this.dailyMeals)
 	}
 	

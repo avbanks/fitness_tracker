@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, Input, Radio, Select, Header, Table } from 'semantic-ui-react';
+import { Button, Form, Icon, Input, Label, Radio, Select, Header, Table } from 'semantic-ui-react';
 import { observer, inject } from 'mobx-react';
 import { compose } from 'recompose';
 import withAuthorization from './sessionAcc';
@@ -63,6 +63,11 @@ const SecondSection = props => {
 @inject('mealTrackStore')
 @observer
 class RecentMeals extends Component {
+	
+	onRemove(id) {
+		this.props.mealTrackStore.deleteMeal(id)	
+	}
+
 	render() {
 	return(
 		<Table celled padded>
@@ -70,14 +75,16 @@ class RecentMeals extends Component {
 				<Table.Row>
 					<Table.HeaderCell>Meal</Table.HeaderCell>
 					<Table.HeaderCell>Calories </Table.HeaderCell>
+					<Table.HeaderCell collapsing>Delete</Table.HeaderCell>
 				</Table.Row>
 			</Table.Header>
 				<Table.Body>
 					{ !this.props.mealTrackStore.dailyMeals ? null : 
 						this.props.mealTrackStore.dailyMeals.map((items) =>
-							<Table.Row>
+							<Table.Row key={items['id']}>
 								<Table.Cell>{items['timeofday']}</Table.Cell>
 								<Table.Cell>{items['calories']}</Table.Cell>
+								<Table.Cell><Label onClick={() =>this.onRemove(items['id'])}><Icon name="remove"/></Label></Table.Cell>
 							</Table.Row>
 						)
 					}

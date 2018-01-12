@@ -16,7 +16,8 @@
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "recompose": "^0.26.0",
-    "semantic-ui-react": "^0.77.0"
+    "semantic-ui-react": "^0.77.0",
+    "shortid": "^2.2.8"
   },
   "scripts": {
     "start": "react-scripts start",

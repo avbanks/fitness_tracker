@@ -8,11 +8,6 @@ import firebase, { auth, provider } from '../stores/firebase';
 @withRouter
 @observer
 class NavBar extends Component {
-	/*constructor(props) {
-		super(props)
-		this.handleClick.bind(this);
-		this.handleLogin.bind(this);
-	}*/
 	
 	handleClick(path) {
 		this.props.history.push(path)
