@@ -32,8 +32,12 @@ const RegisterForm = (props) => {
 		<Form>
 			<Form.Input label="Email" name="email" onChange={props.handleChange}/>
 			<Form.Input label="Password" type="password" name="password" onChange={props.handleChange}/>
+			<Form.Input label="Re-Enter Password" type="password" name="password" onChange={props.handleChange}/>
 			<Form.Button onClick={props.handleRegister}>
 				Register
+			</Form.Button>
+			<Form.Button>
+				Cancel
 			</Form.Button>
 		</Form>
 	)
@@ -54,7 +58,7 @@ class LoginReg extends Component {
 				this.props.authStore.setUser(user); console.log(user)
 			}).then(() => {
 				this.props.history.push('/dailysummary')
-			})
+			}).then(() => console.log('email',firebase.auth().currentUser['email']))
 	}
 
 	handleChange(name,value) {

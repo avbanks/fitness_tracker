@@ -9,12 +9,10 @@ class authStore {
 	@observable loginForm = true;
 	
 	@action.bound setUser(user) {
-		console.log('user set')
 		this.user = user
 	}
 	
 	@action.bound login() {
-		console.log('login')
 		auth.signInWithEmailAndPassword(this.email, this.password)
 	}
 
@@ -36,11 +34,12 @@ class authStore {
 	}
 	
 	@action.bound registerUser(){
-		console.log(this.email)
-		auth.createUserWithEmailAndPassword(this.email,this.password).then((() =>
-			this.switchMode()))
+		auth.createUserWithEmailAndPassword(this.email,this.password)
+			.then(((user) => firebase.database().ref('users/' + user.uid).set({
+				username: 'test'	
+			})))
+			.then((() => this.switchMode()))
 	}
-
 }
 
 export default new authStore()
