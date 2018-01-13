@@ -3,6 +3,7 @@ import { Form, Message, Button } from 'semantic-ui-react';
 import { observer, inject } from 'mobx-react';
 import { withRouter } from 'react-router-dom';
 import firebase, { auth } from '../stores/firebase.js';
+import * as routes from '../constants/routes';
 
 const LoginForm = (props) => {
 	
@@ -57,7 +58,7 @@ class LoginReg extends Component {
 			.then((user) => { 
 				this.props.authStore.setUser(user); console.log(user)
 			}).then(() => {
-				this.props.history.push('/dailysummary')
+				this.props.history.push(routes.HOME)
 			}).then(() => console.log('email',firebase.auth().currentUser['email']))
 	}
 

@@ -22,7 +22,6 @@ class authStore {
 	
 	@action.bound setEmail(email) {
 		this.email = email;
-
 	}
 	
 	@action.bound setPassword(password) {

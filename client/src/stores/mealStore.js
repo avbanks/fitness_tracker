@@ -1,5 +1,7 @@
 import { observable, action, computed } from 'mobx';
 import shortid from 'shortid';
+import firebase, { auth, database } from './firebase.js';
+import moment from 'moment'
 
 
 class mealTrackStore {
@@ -70,6 +72,10 @@ class mealTrackStore {
 				totalFat: this.mealFat
 			}
 		)
+		console.log(auth.currentUser['uid'])
+		firebase.database().ref('users/'+ auth.currentUser['uid']).set(
+			{meals: this.dailyMeals}
+			)
 	}
 
 	@action.bound deleteMeal(id) {
@@ -97,7 +103,6 @@ class mealTrackStore {
 		this.mealFat = null;
 		this.firstSection = !this.firstSection
 	}
-	
 	
 	@computed get totalCalories(){
 		if(this.dailyMeals.length == 0) {
