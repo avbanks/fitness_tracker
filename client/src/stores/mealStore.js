@@ -74,7 +74,7 @@ class mealTrackStore {
 		)
 		console.log(auth.currentUser['uid'])
 		firebase.database().ref('users/'+ auth.currentUser['uid']+'/test').set(
-			{username: 'test'}
+			{username: 'testz'}
 			)
 	}
 
