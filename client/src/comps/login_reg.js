@@ -18,8 +18,8 @@ const LoginForm = (props) => {
 	
 	return (	
 		<Form>
-				<Form.Input label="Email" name="email" onChange={props.handleChange}/>
-				<Form.Input label="Password" name="password" type="password" onChange={props.handleChange}/>
+				<Form.Input label="Email" name="email" error={props.authError} onChange={props.handleChange}/>
+				<Form.Input label="Password" name="password" type="password" error={props.authError} onChange={props.handleChange}/>
 				<SubmitButton handleSubmit={props.handleSubmit}/>
 				<Message>
 					Not a member? <div onClick={props.handleSwitch} style={{"cursor":"pointer"}}><a> Register </a></div>
@@ -50,7 +50,6 @@ const RegisterForm = (props) => {
 @observer
 class LoginReg extends Component {
 	
-
 	handleSubmit() {
 		const { email, password } = this.props.authStore
 		console.log(email,password)
@@ -59,7 +58,8 @@ class LoginReg extends Component {
 				this.props.authStore.setUser(user); console.log(user)
 			}).then(() => {
 				this.props.history.push(routes.HOME)
-			}).then(() => console.log('email',firebase.auth().currentUser['email']))
+			}).then(() => this.props.authStore.setAuthError(false)).
+			catch(()=> this.props.authStore.setAuthError(true))
 	}
 
 	handleChange(name,value) {
@@ -82,7 +82,7 @@ class LoginReg extends Component {
 	render() {
 		if(this.props.authStore.loginForm){
 		return(
-			<LoginForm handleSubmit={() => this.handleSubmit()} handleChange={(e, {name, value}) => this.handleChange(name,value)} handleSwitch={() => this.handleSwitch()}/>
+			<LoginForm authError={this.props.authStore.authError} handleSubmit={() => this.handleSubmit()} handleChange={(e, {name, value}) => this.handleChange(name,value)} handleSwitch={() => this.handleSwitch()}/>
 		)}
 		else {
 			return(

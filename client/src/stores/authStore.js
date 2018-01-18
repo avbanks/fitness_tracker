@@ -7,6 +7,7 @@ class authStore {
 	@observable email = null;
 	@observable password = null;
 	@observable loginForm = true;
+	@observable authError = false;
 	
 	@action.bound setUser(user) {
 		this.user = user
@@ -38,6 +39,10 @@ class authStore {
 				username: 'test'	
 			})))
 			.then((() => this.switchMode()))
+	}
+	
+	@action.bound setAuthError(value) {
+		this.authError = value
 	}
 }
 
