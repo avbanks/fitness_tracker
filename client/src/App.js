@@ -26,12 +26,10 @@ class App extends Component {
 	
 	componentDidMount() {
 	const { authStore } = this.props		
-	console.log('yoooo',authStore.user)
 	auth.onAuthStateChanged(user => {
 		user
 		? authStore.setUser(user)
 		: authStore.setUser(null);
-		console.log('here')
 		});	
 	}
 
@@ -48,7 +46,7 @@ class App extends Component {
 							<Route path={routes.MEALTRACK} component={MealTrack}/>
 							<Route path={routes.MEASTRACK} component={MeasTrack}/>
 							<Route path={routes.WATERTRACK} component={WaterTrack}/>
-							<Route path="/test" component={Test}/>
+							<Route path={routes.TEST} component={Test}/>
 							<Route path={routes.LOGINREG} component={LoginReg}/>
 							<Route path={routes.HOME} component={DailySummary}/>
 						</Switch>
