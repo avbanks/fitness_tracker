@@ -16,8 +16,6 @@ class Test extends Component{
 		return 
 			<form>
 				<input/>
-
-
 			</form>
 	}
 }
