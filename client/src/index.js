@@ -14,6 +14,10 @@ import waterStore from './stores/waterStore';
 import measStore from './stores/measStore';
 import authStore from './stores/authStore';
 
+
+
+require('dotenv').config({path: 'env.auth'})
+
 const stores = {
 	tdeeStore,
 	mealTrackStore,
