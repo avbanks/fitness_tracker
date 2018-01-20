@@ -11,7 +11,7 @@ const config = {
 }
 
 console.log(__filename)
-console.log(process.env.API_KEY)
+console.log(process.env.REACT_APP_TEST)
 
 firebase.initializeApp(config);
 export const provider = new firebase.auth.GoogleAuthProvider();

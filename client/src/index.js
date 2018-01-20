@@ -16,7 +16,6 @@ import authStore from './stores/authStore';
 
 
 
-require('dotenv').config({path: 'env.auth'})
 
 const stores = {
 	tdeeStore,
