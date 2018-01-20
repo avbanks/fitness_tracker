@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Menu, Dropdown, Icon } from 'semantic-ui-react';
+import { Menu, Dropdown } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
 import { inject, observer } from 'mobx-react';
-import firebase, { auth, provider } from '../stores/firebase';
+import { auth } from '../stores/firebase';
 
 @inject('authStore')
 @withRouter

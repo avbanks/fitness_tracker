@@ -1,7 +1,6 @@
 import { observable, action, computed } from 'mobx';
 import shortid from 'shortid';
-import firebase, { auth, database } from './firebase.js';
-import moment from 'moment'
+import firebase, { auth } from './firebase.js';
 
 
 class mealTrackStore {
@@ -110,7 +109,7 @@ class mealTrackStore {
 		}
 		let cals = 0;
 		for(let i=0; i<this.dailyMeals.length; i++){
-			cals += parseInt(this.dailyMeals[i].calories)
+			cals += parseInt(this.dailyMeals[i].calories,10)
 		}
 		return cals
 	}

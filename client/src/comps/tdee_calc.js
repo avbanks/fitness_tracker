@@ -1,19 +1,17 @@
 import React, { Component } from 'react';
-import { Button, Form, Input, Grid, Radio } from 'semantic-ui-react';
+import { Form, Input, Grid, Radio } from 'semantic-ui-react';
 import { observer, inject } from 'mobx-react';
-import { Link } from 'react-router-dom';
 import withAuthorization from './sessionAcc';
 import { compose } from 'recompose';
 
-@inject('tdeeStore', 'measStore')
+@inject('measStore')
 @observer
 class TdeeForm extends Component {
 	render() {
-		const { tdeeStore, measStore } = this.props
+		const {  measStore } = this.props
 		const value = this.props.tdeeStore.value
 		const handleChange = (e, { value }) => { this.props.tdeeStore.setValue(value)}
 		const handleInputChange = (e, { value }) => {this.props.tdeeStore.setBodyweight(value)}
-		const handleMeasChange = (e, {name, value}) => {this.props.measStore.selection[name](value)}
 
 		return (
 			<Grid>

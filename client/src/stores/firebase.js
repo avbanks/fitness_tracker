@@ -1,17 +1,14 @@
 import firebase from 'firebase';
-//
 
 const config = {
-	apiKey: process.env.API_KEY,
-  authDomain: "fitness-app-66633.firebaseapp.com",
-  databaseURL: "https://fitness-app-66633.firebaseio.com",
-  projectId: "fitness-app-66633",
-  storageBucket: "fitness-app-66633.appspot.com",
-  messagingSenderId: "264531720702"
+	apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTHDOMAIN, 
+  databaseURL: process.env.REACT_APP_DATABASE_URL, 
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET, 
+  messagingSenderId: process.env.REACT_APP_MESSAGE_SENDER_ID 
 }
 
-console.log(__filename)
-console.log(process.env.REACT_APP_TEST)
 
 firebase.initializeApp(config);
 export const provider = new firebase.auth.GoogleAuthProvider();

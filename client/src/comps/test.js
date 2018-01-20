@@ -6,10 +6,14 @@ import LoginForm from './login_form';
 
 const form = new LoginForm
 
+@inject('testStore')
 @observer
 class Test extends Component {
 	
 	render() {
+		const { testStore } = this.props
+		const { formError, setFormError } = testStore
+		console.log(formError)
 		return( 
 			<div>
 				<form>	

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import { observer, inject } from 'mobx-react';
-import { Switch, Redirect, Route, withRouter } from 'react-router-dom';
+import { Switch, Route, withRouter } from 'react-router-dom';
 import { Grid } from 'semantic-ui-react';
 import firebase, { auth } from './stores/firebase';
 //components
@@ -13,7 +12,6 @@ import WaterTrack from './comps/water_track';
 import DailySummary from './comps/daily_summary';
 import MeasTrack from './comps/measureTrack';
 import LoginReg from './comps/login_reg';
-import PrivateRoute from './comps/private_route';
 //constants
 import * as routes from './constants/routes';
 //devtools

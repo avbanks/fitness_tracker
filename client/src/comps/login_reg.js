@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Form, Message, Button } from 'semantic-ui-react';
 import { observer, inject } from 'mobx-react';
 import { withRouter } from 'react-router-dom';
-import firebase, { auth } from '../stores/firebase.js';
+import { auth } from '../stores/firebase.js';
 import * as routes from '../constants/routes';
 
 const LoginForm = (props) => {
@@ -58,8 +58,8 @@ class LoginReg extends Component {
 				this.props.authStore.setUser(user); console.log(user)
 			}).then(() => {
 				this.props.history.push(routes.HOME)
-			}).then(() => this.props.authStore.setAuthError(false)).
-			catch(()=> this.props.authStore.setAuthError(true))
+			}).then(() => this.props.authStore.setAuthError(false))
+			.catch(()=> this.props.authStore.setAuthError(true))
 	}
 
 	handleChange(name,value) {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
-import { Table, Button, Input, Form, Icon } from 'semantic-ui-react';
+import { Table, Form } from 'semantic-ui-react';
 import moment from 'moment'
 import { compose } from 'recompose';
 import withAuthorization from './sessionAcc';
@@ -11,11 +11,7 @@ class MeasTrack extends Component{
 	
 	render() {
 		const { measStore } = this.props
-		const value = 2;
-		const value2 = 3;
-		const onClick = () => {
 			
-		}
 		const TableContent = (measStore.sortedWeightHistory.map((items) => 
 			<Table.Row>
 				<Table.Cell>{items['date']}</Table.Cell>

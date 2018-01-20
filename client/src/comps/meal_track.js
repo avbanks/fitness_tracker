@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, Icon, Input, Label, Radio, Select, Header, Table } from 'semantic-ui-react';
+import { Button, Form, Icon, Input, Label, Select, Header, Table } from 'semantic-ui-react';
 import { observer, inject } from 'mobx-react';
 import { compose } from 'recompose';
 import withAuthorization from './sessionAcc';
@@ -23,7 +23,7 @@ const FirstSection = props => {
 						<Form.Field control={Input} label="Servings per container" placeholder="1" name="setservingsPerContainer"  onChange={ e => { props.selection[e.target.name](e.target.value)}}/>	
 					</Form.Group>
 				</Form>
-				<Button onClick={ (e) => {e.preventDefault(), e.stopPropagation(); props.setfirstSection()}}>
+				<Button onClick={ (e) => {e.preventDefault(); e.stopPropagation(); props.setfirstSection()}}>
 						Next
 				</Button>
 			</div>
@@ -94,7 +94,21 @@ class RecentMeals extends Component {
 	}
 }
 
-@inject('mealTrackStore','testStore')
+
+
+
+const RecentMealsComp = (props) => {
+	return 
+	(
+		<div>
+			<Button label='Add Recent Meal' />
+			<Select />
+		</div>
+	)
+}
+
+
+@inject('mealTrackStore')
 @observer
 class MealTrack extends Component {
 	

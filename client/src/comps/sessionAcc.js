@@ -1,5 +1,4 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
 import { inject, observer } from 'mobx-react';
 import firebase, { auth } from '../stores/firebase';
 import * as routes from '../constants/routes';

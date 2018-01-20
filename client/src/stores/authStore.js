@@ -1,5 +1,5 @@
-import { observable, action, computed } from 'mobx';
-import firebase, { auth, provider } from './firebase.js';
+import { observable, action } from 'mobx';
+import firebase, { auth } from './firebase.js';
 
 class authStore {
 	

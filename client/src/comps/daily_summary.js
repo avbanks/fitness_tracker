@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Label, Button, Message, Header, Segment, Image, Grid }  from 'semantic-ui-react';
+import { Label, Message, Header, Segment, Image, Grid }  from 'semantic-ui-react';
 import { inject, observer} from 'mobx-react';
 import withAuthorization from './sessionAcc';
 import { compose } from 'recompose';
