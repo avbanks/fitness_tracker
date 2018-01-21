@@ -2,10 +2,10 @@ import { observable, action } from 'mobx';
 
 class testStore {
 
- @observable formError = false;
- 
- @action.bound setFormError(value) {
-		this.formError = value
+ @observable date = new Date()
+
+ @action.bound setDate(value) {
+		this.date = value
  }
 	
 
