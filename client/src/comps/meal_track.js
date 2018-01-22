@@ -16,8 +16,6 @@ const FirstSection = props => {
 	const onChange = value => props.setDate(value)
 	const onClick = (value) => props.changeDays(value)
 	
-	
-	console.log(typeof(props.date))	
 	return (
 			<div>
 				<Icon link name="chevron left" size='large' onClick={() => onClick(-1)}/>

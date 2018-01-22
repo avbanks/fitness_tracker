@@ -1,4 +1,4 @@
-import { observable, action, computed } from 'mobx';
+import { observable, action, computed, toJS } from 'mobx';
 import shortid from 'shortid';
 import firebase, { auth } from './firebase.js';
 
@@ -57,9 +57,11 @@ class mealTrackStore {
 	}
 
 	@action.bound  setmealSubmit() {
-		this.dailyMeals = this.dailyMeals.concat(
+		const currentDate = this.date.toString().slice(0,15)
+		const currentMeal = 
 			{	
 				id: shortid.generate(),	
+				currentDate: currentDate,
 				entryTime:  new Date().getTime(),
 				timeofday: this.mealType,
 				calories: this.mealCalories,
@@ -71,15 +73,15 @@ class mealTrackStore {
 				totalProtein: this.mealProtein,
 				totalFat: this.mealFat
 			}
-		)
-		console.log(auth.currentUser['uid'])
-		firebase.database().ref('users/'+ auth.currentUser['uid']+'/test').set(
-			{username: 'testz'}
-			)
+		
+		this.dailyMeals = this.dailyMeals.concat(currentMeal)	
+ 		
+		const meals = firebase.database().ref('users/'+ auth.currentUser['uid']+'/meals')
+	  meals.push(currentMeal) 
+		console.log(meals)
 	}
 
 	@action.bound deleteMeal(id) {
-		console.log('click')
 		let meals = this.dailyMeals	
 		for(let i=0; i<meals.length; i++) {
 			if(meals[i]['id'] == id) {
@@ -88,7 +90,6 @@ class mealTrackStore {
 			}
 		}
 		this.dailyMeals = meals
-		console.log(this.dailyMeals)
 	}
 	
 	@action.bound resetStore() {
