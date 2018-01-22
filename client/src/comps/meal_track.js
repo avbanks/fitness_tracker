@@ -3,6 +3,7 @@ import { Button, Form, Icon, Input, Label, Select, Header, Table } from 'semanti
 import { observer, inject } from 'mobx-react';
 import { compose } from 'recompose';
 import withAuthorization from './sessionAcc';
+import DatePicker from 'react-date-picker';
 
 const options = [
 	{ key: 'Breakfast', text: 'Breakfast', value: 'Breakfast' },
@@ -12,8 +13,16 @@ const options = [
 ]
 
 const FirstSection = props => {
+	const onChange = value => props.setDate(value)
+	const onClick = (value) => props.changeDays(value)
+	
+	
+	console.log(typeof(props.date))	
 	return (
 			<div>
+				<Icon link name="chevron left" size='large' onClick={() => onClick(-1)}/>
+				<DatePicker value={props.date} onChange={ value => onChange(value)}/>
+				<Icon link name="chevron right" size='large' onClick={() => onClick(1)}/>
 				<Form>
 					<Form.Group> 
 						<Form.Field control={Select} label="Select Meal Type" options={options} name="setmealType" onChange={ (e, { name, value}) => {props.selection[name](value)}}/>	
@@ -84,7 +93,7 @@ class RecentMeals extends Component {
 							<Table.Row key={items['id']}>
 								<Table.Cell>{items['timeofday']}</Table.Cell>
 								<Table.Cell>{items['calories']}</Table.Cell>
-								<Table.Cell><Label onClick={() =>this.onRemove(items['id'])}><Icon name="remove"/></Label></Table.Cell>
+								<Table.Cell><Label onClick={() =>this.onRemove(items['id'])}><Icon link name="remove"/></Label></Table.Cell>
 							</Table.Row>
 						)
 					}
@@ -114,7 +123,7 @@ class MealTrack extends Component {
 	
 	render() {
 		const { mealTrackStore } = this.props
-		const { selection, firstSection, mealType } = mealTrackStore
+		const { selection, firstSection, mealType, date, setDate, changeDays } = mealTrackStore
 		const onClick = () => {
 					this.props.mealTrackStore.setfirstSection()
 				}
@@ -122,18 +131,17 @@ class MealTrack extends Component {
 			mealTrackStore.setmealSubmit()
 			mealTrackStore.resetStore()
 		}
-
+		const onChange = (value) => { setDate(value) }
+		
 		if(firstSection === true) {
-			console.log(mealType)
 			return (
 				<div>
-					<FirstSection selection={selection} setfirstSection={onClick}/>
+					<FirstSection selection={selection} setfirstSection={onClick} date={date} setDate={setDate} changeDays={changeDays}/>
 					<RecentMeals/>
 				</div>
 			)
 		  }
 
-		console.log(mealType)
 		return (
 			<div>
 				<SecondSection selection={selection} setfirstSection={onClick} onSub={onSubmit}/>

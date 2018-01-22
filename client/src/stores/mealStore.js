@@ -17,6 +17,7 @@ class mealTrackStore {
 	@observable firstSection = true;
 	@observable goalCalories = 0;
 	@observable dailyMeals = [];
+	@observable date = new Date()
 	
 	@action.bound setmealType(value) {
 		this.mealType = value;
@@ -103,6 +104,10 @@ class mealTrackStore {
 		this.firstSection = !this.firstSection
 	}
 	
+	@action.bound setDate(value) {
+		this.date = value
+	}
+	
 	@computed get totalCalories(){
 		if(this.dailyMeals.length == 0) {
 			return 0	
@@ -113,6 +118,18 @@ class mealTrackStore {
 		}
 		return cals
 	}
+
+	@action.bound changeDays(days) {
+		Date.prototype.changeDays = function(days) {
+			let dat = new Date(this.valueOf());
+			dat.setDate(dat.getDate() + days);
+			return dat
+		}
+		const newDate = this.date.changeDays(days)
+		this.date =	newDate
+		console.log(this.date)
+	}
+	
 	
 	selection = { 
 		"setmealType": this.setmealType,
