@@ -76,9 +76,14 @@ class mealTrackStore {
 		
 		this.dailyMeals = this.dailyMeals.concat(currentMeal)	
  		
-		const meals = firebase.database().ref('users/'+ auth.currentUser['uid']+'/meals')
-	  meals.push(currentMeal) 
-		console.log(meals)
+		const ref = firebase.database().ref('users/'+ auth.currentUser['uid']+'/meals')
+		ref.once('value', function(snapshot) {
+			snapshot.forEach(function(childSnapshot) {
+				const childKey = childSnapshot.key
+				const childData = childSnapshot.val()
+			})
+		})
+	  ref.push(currentMeal) 
 	}
 
 	@action.bound deleteMeal(id) {

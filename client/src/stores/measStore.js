@@ -1,4 +1,6 @@
 import { observable, action, computed } from 'mobx';
+import firebase, { auth } from './firebase.js';
+
 
 class measStore {
 	
@@ -58,6 +60,13 @@ class measStore {
 		}
 		const array = this.weightHistory;
 		return array.sort(sortFunction);
+	}
+	
+	setGoals() {
+		const ref = firebase.database().ref('users/'+auth.currentUser['uid']+'/goals')		ref.set({
+			weight: this.targetWeight
+			calories: this.calorieGoals
+		})
 	}
 
 	selection = {

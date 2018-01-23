@@ -4,7 +4,7 @@ import { observer, inject } from 'mobx-react';
 import withAuthorization from './sessionAcc';
 import { compose } from 'recompose';
 
-@inject('measStore')
+@inject('measStore', 'tdeeStore')
 @observer
 class TdeeForm extends Component {
 	render() {
