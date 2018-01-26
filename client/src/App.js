@@ -5,7 +5,7 @@ import { Grid } from 'semantic-ui-react';
 import firebase, { auth } from './stores/firebase';
 //components
 import TdeeForm from './comps/tdee_calc';
-import MealTrack from './comps/meal_track';
+import MealTrack from './comps/MealTrack';
 import NavBar from './comps/navbar';
 import Test from './comps/test';
 import WaterTrack from './comps/water_track';

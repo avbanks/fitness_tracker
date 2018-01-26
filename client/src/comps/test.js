@@ -3,7 +3,6 @@ import { observer, inject } from 'mobx-react';
 import { Input } from 'semantic-ui-react';
 import LoginForm from './login_form';
 import moment from 'moment';
-import DatePicker from 'react-date-picker'
 
 //const form = new LoginForm
 
@@ -16,7 +15,7 @@ class Test extends Component {
 		const { date, setDate } = testStore
 		const onChange = value => {setDate(value); console.log(date)} 
 		return( 
-				<DatePicker value={date} onChange={onChange}/>
+				null
 				/*<form>	
 					<Input {...form.$('email').bind()} error={form.$('email').error}/><br/>
 					<Input {...form.$('password').bind()}/><br/>

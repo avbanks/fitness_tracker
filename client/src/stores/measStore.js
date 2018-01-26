@@ -62,12 +62,7 @@ class measStore {
 		return array.sort(sortFunction);
 	}
 	
-	setGoals() {
-		const ref = firebase.database().ref('users/'+auth.currentUser['uid']+'/goals')		ref.set({
-			weight: this.targetWeight
-			calories: this.calorieGoals
-		})
-	}
+	
 
 	selection = {
 		"setWeight": this.setWeight,
