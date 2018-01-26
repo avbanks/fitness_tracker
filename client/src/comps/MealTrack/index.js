@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Button, Form, Icon, Input, Label, Select, Header, Table } from 'semantic-ui-react';
 import { observer, inject } from 'mobx-react';
 import { compose } from 'recompose';
 //Components
@@ -16,31 +15,21 @@ class MealTrack extends Component {
 	
 	render() {
 		const { mealTrackStore } = this.props
-		const { selection, firstSection, mealType, date, setDate, changeDays } = mealTrackStore
-		const onClick = () => {
-					this.props.mealTrackStore.setfirstSection()
-				}
-		const onSubmit = () => {
-			mealTrackStore.setmealSubmit()
-			mealTrackStore.resetStore()
-		}
-		const onChange = (value) => { setDate(value) }
+		const { selection, firstSection, date, setDate, setfirstSection, changeDays, resetStore, setmealSubmit } = mealTrackStore
 		
 		if(firstSection === true) {
 			return (
 				<div>
-					<FirstSection selection={selection} setfirstSection={onClick} date={date} setDate={setDate} changeDays={changeDays}/>
+					<FirstSection selection={selection} setfirstSection={setfirstSection} date={date} setDate={setDate} changeDays={changeDays}/>
 					<RecentMeals/>
 				</div>
-			)
-		  }
+				)}
 
 		return (
 			<div>
-				<SecondSection selection={selection} setfirstSection={onClick} onSub={onSubmit}/>
+				<SecondSection selection={selection} setfirstSection={setfirstSection} resetStore={resetStore} setmealSubmit={setmealSubmit}/>
 			</div>
-		)
-			}
+		)}
 }
 
 const authCondition = authUser => !!authUser;

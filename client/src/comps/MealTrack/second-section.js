@@ -2,6 +2,10 @@ import React from 'react';
 import { Form, Header, Input } from 'semantic-ui-react';
 
 const SecondSection = props => {
+	
+	const setfirstSection = () => props.setfirstSection()
+	const onSubmit = () => { props.setmealSubmit(); props.resetStore() } 
+
 	return (
 		<div>
 			<Header as='h3' dividing>
@@ -19,10 +23,10 @@ const SecondSection = props => {
 						props.selection[e.target.name](e.target.value)}} />
 				<Form.Field control={Input} label="Total Fats (g)" placeholder="Optional" name="setmealFat" onChange={e => {
 					props.selection[e.target.name](e.target.value)}} />
-			<Form.Button onClick={ () => props.setfirstSection()}>
+			<Form.Button onClick={ () => setfirstSection()}>
 				Back
 			</Form.Button>
-			<Form.Button type="Submit" onClick={(e) => {e.preventDefault();props.onSub()}}>
+			<Form.Button type="Submit" onClick={(e) => {e.preventDefault();onSubmit()}}>
 				Submit
 			</Form.Button>
 			</Form>

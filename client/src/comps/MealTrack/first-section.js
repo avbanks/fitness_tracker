@@ -12,6 +12,7 @@ const FirstSection = props => {
 			{ key: 'Dinner', text: 'Dinner', value: 'Dinner' },
 			{ key: 'Snack', text: 'Snack', value: 'Snack' },
 		]
+		const setfirstSection = () => props.setfirstSection()
 		const onChange = value => props.setDate(value)
 		const onClick = value => props.changeDays(value)
 		
@@ -29,7 +30,7 @@ const FirstSection = props => {
 						<Form.Field control={Input} label="Servings per container" placeholder="1" name="setservingsPerContainer"  onChange={ e => { props.selection[e.target.name](e.target.value)}}/>	
 					</Form.Group>
 				</Form>
-				<Button onClick={ (e) => {e.preventDefault(); e.stopPropagation(); props.setfirstSection()}}>
+				<Button onClick={ (e) => {e.preventDefault(); e.stopPropagation(); setfirstSection()}}>
 						Next
 				</Button>
 		</div>
