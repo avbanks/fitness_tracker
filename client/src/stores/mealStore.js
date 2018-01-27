@@ -1,4 +1,4 @@
-import { observable, action, computed, toJS } from 'mobx';
+import { autorun, observable, action, computed, runInAction, toJS } from 'mobx';
 import shortid from 'shortid';
 import firebase, { auth } from './firebase.js';
 
@@ -16,60 +16,82 @@ class mealTrackStore {
 	@observable firstSection = true;
 	@observable goalCalories = 0;
 	@observable dailyMeals = [];
-	@observable date = new Date()
+	@observable date = new Date();
 	@observable meals = [];
+	@observable currentMeals = [];
+	@observable loading = false;
 
 	@action loadMeals = () => {
+		console.log('loading')
+		this.loading = true;
 		const ref = firebase.database().ref('users/'+ auth.currentUser['uid']+'/meals')
-		const meals = []
 		const _this = this
 		
 		ref.once('value').then(snapshot => {
 			snapshot.forEach(childSnapshot => {
 				const childKey = childSnapshot.key
 				const childData = childSnapshot.val()
+				console.log(childData)
 				_this.meals.push(childData)
 				})
-			}).then(this.meals = this.meals.concat(_this.meals))
+			}).then(() => {this.meals = _this.meals; runInAction(()=>this.loading=false)})
 		}
-	@action.bound setmealType(value) {
+	
+	
+	
+	@action setCurrentMeals = () => {
+		const ref = firebase.database().ref('users/'+ auth.currentUser['uid']+'/meals')
+		const day = this.date.toString().slice(0,15)
+		const meals = this.meals	
+		const newCurrent = []
+		meals.toJS().forEach(meal => {
+			if(meal.currentDate === day) {
+				newCurrent.push(meal)
+				console.log('match')
+			}
+		})
+		
+		this.dailyMeals = newCurrent 
+	}
+	
+	@action setmealType = (value) => {
 		this.mealType = value;
 			}
-	@action.bound setbrandName(value) {
-			this.brandName = value;
+	@action setbrandName = (value) => {
+		this.brandName = value;
 			}
-	@action.bound  setmealDesc(value) {
-				this.mealDesc = value;
+	@action setmealDesc = (value) => {
+		this.mealDesc = value;
 			}
-	@action.bound  setservingSize(value) {
-				this.servingSize = value;
+	@action setservingSize = (value) => {
+		this.servingSize = value;
 			}
-	@action.bound  setservingsPerContainer(value) {
-				this.servingsPerContainer = value;
+	@action setservingsPerContainer = (value) => {
+		this.servingsPerContainer = value;
 			}
-	@action.bound  setmealCalories(value) {
-				this.mealCalories = value;
+	@action setmealCalories = (value) => {
+		this.mealCalories = value;
 			}
-	@action.bound  setmealCarbs(value) {
-				this.mealCarbs = value;
+	@action setmealCarbs = (value) => {
+		this.mealCarbs = value;
 			}
-	@action.bound setmealProtein(value) {
-				this.mealProtein = value;
+	@action setmealProtein = (value) => {
+		this.mealProtein = value;
 			}
-	@action.bound  setmealFat(value) {
-				this.mealFat = value;
+	@action setmealFat = (value) => {
+		this.mealFat = value;
 			}
-	@action.bound  setrecentMeal(values) {
-			this.recentMeal = values;
+	@action setrecentMeal = (values) => {
+		this.recentMeal = values;
 			}
-	@action.bound  setfirstSection() {
+	@action setfirstSection = () => {
 		this.firstSection = !this.firstSection;
 			}
-	@action.bound  setGoalCalories(value) {
+	@action setGoalCalories = (value) => {
 		this.goalCalories = value;
 	}
 
-	@action.bound  setmealSubmit() {
+	@action setmealSubmit = () => {
 		const currentDate = this.date.toString().slice(0,15)
 		const currentMeal = 
 			{	
@@ -149,19 +171,6 @@ class mealTrackStore {
 		console.log(this.date)
 	}
 
-	@action.bound getDailyMeals(day) {
-		const ref = firebase.database().ref('users/'+ auth.currentUser['uid']+'/meals')
-		const data = []
-		const meals = [] 
-		ref.once('value', function(snapshot) {
-			snapshot.forEach(function(childSnapshot) {
-				const childKey = childSnapshot.key
-				const childData = childSnapshot.val()
-				meals.push(childData);
-			})
-		})
-		console.log(meals)
-	}
 	
 	selection = { 
 		"setmealType": this.setmealType,
@@ -176,6 +185,8 @@ class mealTrackStore {
 		"setfirstSection": this.setfirstSection,
 		"mealSubmit": this.mealSubmit
 	}
+
 }
 
 export default new mealTrackStore()
+

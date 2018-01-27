@@ -16,7 +16,7 @@ const FirstSection = props => {
 		]
 		const setfirstSection = () => props.setfirstSection()
 		const onChange = value => props.setDate(value)
-		const onClick = value => {props.changeDays(value); props.getDailyMeals()}
+		const onClick = value => { props.changeDays(value) }
 		
 		return (
 			<div>
