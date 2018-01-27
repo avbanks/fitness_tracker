@@ -2,7 +2,6 @@ import { observable, action, computed, toJS } from 'mobx';
 import shortid from 'shortid';
 import firebase, { auth } from './firebase.js';
 
-
 class mealTrackStore {
 	
 	@observable mealType = null;
@@ -18,7 +17,21 @@ class mealTrackStore {
 	@observable goalCalories = 0;
 	@observable dailyMeals = [];
 	@observable date = new Date()
-	
+	@observable meals = [];
+
+	@action loadMeals = () => {
+		const ref = firebase.database().ref('users/'+ auth.currentUser['uid']+'/meals')
+		const meals = []
+		const _this = this
+		
+		ref.once('value').then(snapshot => {
+			snapshot.forEach(childSnapshot => {
+				const childKey = childSnapshot.key
+				const childData = childSnapshot.val()
+				_this.meals.push(childData)
+				})
+			}).then(this.meals = this.meals.concat(_this.meals))
+		}
 	@action.bound setmealType(value) {
 		this.mealType = value;
 			}
@@ -135,7 +148,20 @@ class mealTrackStore {
 		this.date =	newDate
 		console.log(this.date)
 	}
-	
+
+	@action.bound getDailyMeals(day) {
+		const ref = firebase.database().ref('users/'+ auth.currentUser['uid']+'/meals')
+		const data = []
+		const meals = [] 
+		ref.once('value', function(snapshot) {
+			snapshot.forEach(function(childSnapshot) {
+				const childKey = childSnapshot.key
+				const childData = childSnapshot.val()
+				meals.push(childData);
+			})
+		})
+		console.log(meals)
+	}
 	
 	selection = { 
 		"setmealType": this.setmealType,

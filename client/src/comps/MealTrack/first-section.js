@@ -1,6 +1,8 @@
 import React from 'react';
 import { Button, Form, Icon, Input, Select } from 'semantic-ui-react';
 import DatePicker from 'react-date-picker';
+import PropTypes from 'prop-types';
+
 
 //Components shows the first section of the form to add meals 
 
@@ -14,7 +16,7 @@ const FirstSection = props => {
 		]
 		const setfirstSection = () => props.setfirstSection()
 		const onChange = value => props.setDate(value)
-		const onClick = value => props.changeDays(value)
+		const onClick = value => {props.changeDays(value); props.getDailyMeals()}
 		
 		return (
 			<div>
@@ -35,6 +37,12 @@ const FirstSection = props => {
 				</Button>
 		</div>
 	)
+}
+
+FirstSection.propTypes = {
+	setfirstSection: PropTypes.func.isRequired,
+	setDate: PropTypes.func.isRequired,
+	changeDays: PropTypes.func.isRequired
 }
 
 export default FirstSection

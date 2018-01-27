@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form, Header, Input } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
 
 const SecondSection = props => {
 	
@@ -8,14 +9,14 @@ const SecondSection = props => {
 
 	return (
 		<div>
-			<Header as='h3' dividing>
+			<Header as="h3" dividing>
 				Nutrition Facts
 			</Header>
 			<Form>
 				<Form.Input onChange={e => {
 					props.selection[e.target.name](e.target.value)
 				}} 
-					label="Calories" placeholder="Required" name='setmealCalories' />
+					label="Calories" placeholder="Required" name="setmealCalories" />
 				<Form.Input label="Total Carbohydrates (g)" placeholder="Opional" name="setmealCarbs" onChange={e => {
 					props.selection[e.target.name](e.target.value)
 				}}/>
@@ -32,6 +33,15 @@ const SecondSection = props => {
 			</Form>
 		</div> 
 	)
+
+}
+
+
+//not working properly
+SecondSection.propTypes = {
+	setfirstSection: PropTypes.func.isRequired,
+	setmealSubmit: PropTypes.func.isRequired,
+	resetStore: PropTypes.func.isRequired
 }
 
 export default SecondSection

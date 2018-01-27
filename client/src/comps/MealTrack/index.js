@@ -13,17 +13,21 @@ import withAuthorization from '../sessionAcc';
 @observer
 class MealTrack extends Component {
 	
+	componentDidMount() {
+		this.props.mealTrackStore.loadMeals()
+	}
+	
 	render() {
 		const { mealTrackStore } = this.props
-		const { selection, firstSection, date, setDate, setfirstSection, changeDays, resetStore, setmealSubmit } = mealTrackStore
+		const { selection, firstSection, date, setDate, setfirstSection, changeDays, resetStore, setmealSubmit, getDailyMeals } = mealTrackStore
 		
 		if(firstSection === true) {
 			return (
 				<div>
-					<FirstSection selection={selection} setfirstSection={setfirstSection} date={date} setDate={setDate} changeDays={changeDays}/>
+					<FirstSection selection={selection} setfirstSection={setfirstSection} date={date} setDate={setDate} changeDays={changeDays} getDailyMeals={getDailyMeals}/>
 					<RecentMeals/>
 				</div>
-				)}
+			)}
 
 		return (
 			<div>
