@@ -13,7 +13,7 @@ class mealTrackStore {
 	@observable mealCarbs = 0;
 	@observable mealProtein = 0;
 	@observable mealFat = 0;
-	@observable firstSection = true;
+	@observable firstSection = true; //when user clicks back on browser this is wrong
 	@observable goalCalories = 0;
 	@observable dailyMeals = [];
 	@observable date = new Date();
@@ -22,7 +22,6 @@ class mealTrackStore {
 	@observable loading = false;
 
 	@action loadMeals = () => {
-		console.log('loading')
 		this.loading = true;
 		const ref = firebase.database().ref('users/'+ auth.currentUser['uid']+'/meals')
 		const _this = this
@@ -31,7 +30,6 @@ class mealTrackStore {
 			snapshot.forEach(childSnapshot => {
 				const childKey = childSnapshot.key
 				const childData = childSnapshot.val()
-				console.log(childData)
 				_this.meals.push(childData)
 				})
 			}).then(() => {this.meals = _this.meals; runInAction(()=>this.loading=false)})
@@ -47,7 +45,6 @@ class mealTrackStore {
 		meals.toJS().forEach(meal => {
 			if(meal.currentDate === day) {
 				newCurrent.push(meal)
-				console.log('match')
 			}
 		})
 		
