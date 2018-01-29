@@ -28,7 +28,7 @@ class MealTrack extends Component {
 	
 	render() {
 		const { mealTrackStore } = this.props
-		const { loading, selection, firstSection, date, setDate, setfirstSection, changeDays, resetStore, setmealSubmit, getDailyMeals } = mealTrackStore
+		const { loading, selection, firstSection, date, removeMeal, setDate, setfirstSection, changeDays, resetStore, setmealSubmit, getDailyMeals } = mealTrackStore
 		
 		if(loading) {
 			return ( 
