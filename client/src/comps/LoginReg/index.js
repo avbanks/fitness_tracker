@@ -4,45 +4,9 @@ import { observer, inject } from 'mobx-react';
 import { withRouter } from 'react-router-dom';
 import { auth } from '../../stores/firebase.js';
 import * as routes from '../../constants/routes';
-
-const LoginForm = (props) => {
-	
-	const SubmitButton = withRouter(({ history, ...props }) =>
-		(
-		<Button
-			onClick={() => { props.handleSubmit(history.push('/dailysummary'))}}
-		>
-			Login	
-		</Button>
-	))
-	
-	return (	
-		<Form>
-				<Form.Input label="Email" name="email" error={props.authError} onChange={props.handleChange}/>
-				<Form.Input label="Password" name="password" type="password" error={props.authError} onChange={props.handleChange}/>
-				<SubmitButton handleSubmit={props.handleSubmit}/>
-				<Message>
-					Not a member? <div onClick={props.handleSwitch} style={{"cursor":"pointer"}}><a> Register </a></div>
-				</Message>
-		</Form>
-	)
-}
-
-const RegisterForm = (props) => {
-	return (
-		<Form>
-			<Form.Input label="Email" name="email" onChange={props.handleChange}/>
-			<Form.Input label="Password" type="password" name="password" onChange={props.handleChange}/>
-			<Form.Input label="Re-Enter Password" type="password" name="password" onChange={props.handleChange}/>
-			<Form.Button onClick={props.handleRegister}>
-				Register
-			</Form.Button>
-			<Form.Button>
-				Cancel
-			</Form.Button>
-		</Form>
-	)
-}
+//Components
+import LoginForm from './login-form';
+import RegisterForm from './register-form';
 
 
 @inject('authStore')

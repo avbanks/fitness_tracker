@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Form } from 'semantic-ui-react';
+import { Button, Form, Message } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
 
 const LoginForm = (props) => {
@@ -7,8 +7,7 @@ const LoginForm = (props) => {
 	const SubmitButton = withRouter(({ history, ...props }) =>
 		(
 		<Button
-			onClick={() => { props.handleSubmit(history.push('/dailysummary'))}}
-		>
+			onClick={() => { props.handleSubmit(history.push('/dailysummary'))}}>
 			Login	
 		</Button>
 	))
@@ -25,4 +24,4 @@ const LoginForm = (props) => {
 	)
 }
 
-
+export default LoginForm

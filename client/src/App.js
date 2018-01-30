@@ -44,6 +44,7 @@ const AsyncWaterTrack = Loadable({
 	loading: LoadingComp
 })
 
+
 @inject('authStore')
 @withRouter
 @observer

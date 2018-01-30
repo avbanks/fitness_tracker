@@ -8,12 +8,13 @@ import { compose } from 'recompose';
 @observer
 class TdeeForm extends Component {
 	render() {
-		const {  measStore } = this.props
-		const value = this.props.tdeeStore.value
-		const handleChange = (e, { value }) => { this.props.tdeeStore.setValue(value)}
-		const handleInputChange = (e, { value }) => {this.props.tdeeStore.setBodyweight(value)}
-
-		return (
+		const {  measStore, tdeeStore } = this.props
+		const { setValue, setBodyweight, value } = tdeeStore
+		const handleChange = (e, { value }) => { setValue(value)}
+		const handleInputChange = (e, { value }) => {setBodyweight(value)}
+		const setTargetsClick = measStore.setTargets()
+		
+			return (
 			<Grid>
 				<Grid.Row>
 					<Grid.Column width={4}>
@@ -39,7 +40,7 @@ class TdeeForm extends Component {
 						<Form onSubmit={() => { measStore.setCalorieGoals(document.querySelector("[name='setCalorieGoals']").value);measStore.setTargetWeight(document.querySelector("[name='setTargetWeight']").value)}}>
 							<Form.Input label={'Target Daily Calories'} name={'setCalorieGoals'} />
 							<Form.Input label={'Target Weight'} name={'setTargetWeight'} />
-							<Form.Button> 
+							<Form.Button onClick={() => this.props.measStore.setTargets()}> 
 								Set Targets	
 							</Form.Button>
 						</Form>

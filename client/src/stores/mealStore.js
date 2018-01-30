@@ -126,7 +126,7 @@ class mealTrackStore {
 		})
 	}
 	
-	@action resetStore () => {
+	@action resetStore = () => {
 		this.timeofday = null;
 		this.calories = null;
 		this.brandName = null;

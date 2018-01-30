@@ -13,17 +13,28 @@ class measStore {
 	@observable dailyMeas = {}
 	@observable date = '';
 	@observable weightHistory = [] 
-	@observable calorieGoals;
-	@observable targetWeight;
+	@observable calorieGoals = null;
+	@observable targetWeight = null;
 	
-	@action.bound setCalorieGoals(value) {
+	@action setCalorieGoals = (value) => {
 		this.calorieGoals = value;
-		console.log(this.calorieGoals)
 	}
-	@action.bound setTargetWeight(value) {
+	
+	@action setTargetWeight = (value) => {
 		this.targetWeight = value;
-		console.log(this.targetWeight)
 	}
+
+	@action setTargets = () => {
+		const ref = firebase.database().ref('users/'+ auth.currentUser['uid']+'/goals/')
+		ref.set({
+			goals : {
+			targetweight: this.targetWeight,
+			targetcalories: this.calorieGoals
+				}
+	   	})
+		console.log('setTarg')
+		}
+
 	@action.bound setWeight(value) {
 		this.weight = value
 	}
