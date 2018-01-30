@@ -35,29 +35,35 @@ class measStore {
 		console.log('setTarg')
 		}
 
-	@action.bound setWeight(value) {
+	@action setWeight = value => {
 		this.weight = value
 	}
-	@action.bound setDate(value) {
+
+	@action setDate = value => {
 		this.date = value
 	}
-	@action.bound setNeck(value) {
+
+	@action setNeck = value => {
 		this.neck = value
 	}
-	@action.bound setWaist(value) {
+
+	@action setWaist = value => {
 		this.waist = value
 	}
-	@action.bound setHips(value) {
+
+	@action setHips = value => {
 		this.hips = value
 	}
-	@action.bound setChest(value) {
+
+	@action setChest = value => {
 		this.chest = value
 	}
 	
-	@action.bound setDailyMeas(){
+	@action setDailyMeas = () => {
 		this.dailyMeas = ''
 	}
-	@action.bound addToWeightHistory(){
+
+	@action addToWeightHistory = () => {
 		this.weightHistory = this.weightHistory.concat(
 			{'weight': this.weight,
 				'date': this.date
@@ -73,8 +79,6 @@ class measStore {
 		return array.sort(sortFunction);
 	}
 	
-	
-
 	selection = {
 		"setWeight": this.setWeight,
 		"setDate": this.setDate,
