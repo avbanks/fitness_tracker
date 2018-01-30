@@ -126,7 +126,7 @@ class mealTrackStore {
 		})
 	}
 	
-	@action.bound resetStore() {
+	@action resetStore () => {
 		this.timeofday = null;
 		this.calories = null;
 		this.brandName = null;
@@ -139,7 +139,7 @@ class mealTrackStore {
 		this.firstSection = !this.firstSection
 	}
 	
-	@action.bound setDate(value) {
+	@action setDate = (value) => {
 		this.date = value
 	}
 	
@@ -154,7 +154,7 @@ class mealTrackStore {
 		return cals
 	}
 
-	@action.bound changeDays(days) {
+	@action changeDays = (days) => {
 		Date.prototype.changeDays = function(days) {
 			let dat = new Date(this.valueOf());
 			dat.setDate(dat.getDate() + days);

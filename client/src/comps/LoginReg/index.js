@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Form, Message, Button } from 'semantic-ui-react';
 import { observer, inject } from 'mobx-react';
 import { withRouter } from 'react-router-dom';
-import { auth } from '../stores/firebase.js';
-import * as routes from '../constants/routes';
+import { auth } from '../../stores/firebase.js';
+import * as routes from '../../constants/routes';
 
 const LoginForm = (props) => {
 	

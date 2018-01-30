@@ -9,14 +9,19 @@ import moment from 'moment';
 @inject('testStore')
 @observer
 class Test extends Component {
+	constructor(props) {
+		super(props)
+		console.log('TEST')
+	}
 	
 	render() {
+		
 		const { testStore } = this.props
 		const { date, setDate } = testStore
 		const onChange = value => {setDate(value); console.log(date)} 
 		return( 
-				null
-				/*<form>	
+				<h1>Test</h1>	
+			/*<form>	
 					<Input {...form.$('email').bind()} error={form.$('email').error}/><br/>
 					<Input {...form.$('password').bind()}/><br/>
 					<Input {...form.$('passwordConfirmation').bind()}/><br/>
