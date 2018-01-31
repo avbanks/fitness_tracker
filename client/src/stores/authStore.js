@@ -9,11 +9,11 @@ class authStore {
 	@observable loginForm = true;
 	@observable authError = false;
 	
-	@action.bound setUser(user) {
+	@action setUser = user => {
 		this.user = user
 	}
 	
-	@action.bound login() {
+	@action login = () => {
 		auth.signInWithEmailAndPassword(this.email, this.password)
 	}
 
