@@ -14,9 +14,6 @@ import waterStore from './stores/waterStore';
 import measStore from './stores/measStore';
 import authStore from './stores/authStore';
 
-
-
-
 const stores = {
 	tdeeStore,
 	mealTrackStore,

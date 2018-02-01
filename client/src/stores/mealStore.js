@@ -114,7 +114,7 @@ class mealTrackStore {
 	  ref.push(currentMeal) 
 	}
 
-	@action.bound deleteMeal(id) {
+	@action deleteMeal = id => {
 		const ref = firebase.database().ref('users/'+ auth.currentUser['uid']+'/meals')
 		ref.once('value').then(snapshot => {
 		snapshot.forEach(childSnapshot => {
