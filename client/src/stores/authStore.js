@@ -17,23 +17,23 @@ class authStore {
 		auth.signInWithEmailAndPassword(this.email, this.password)
 	}
 
-	@action.bound logOut() {
+	@action logOut = () => {
 		auth.signOut()
 	}
 	
-	@action.bound setEmail(email) {
+	@action setEmail = email => {
 		this.email = email;
 	}
 	
-	@action.bound setPassword(password) {
+	@action setPassword = password => {
 		this.password = password;
 	}
 	
-	@action.bound switchMode() {
+	@action switchMode = () => {
 		this.loginForm = !this.loginForm
 	}
 	
-	@action.bound registerUser(){
+	@action registerUser = () => {
 		auth.createUserWithEmailAndPassword(this.email,this.password)
 			.then(((user) => firebase.database().ref('users/' + user.uid).set({
 				username: 'test'	
@@ -41,7 +41,7 @@ class authStore {
 			.then((() => this.switchMode()))
 	}
 	
-	@action.bound setAuthError(value) {
+	@action setAuthError = value => {
 		this.authError = value
 	}
 }

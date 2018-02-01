@@ -8,7 +8,7 @@ import { compose } from 'recompose';
 @observer
 class TdeeForm extends Component {
 	render() {
-		const {  measStore, tdeeStore } = this.props
+		const { measStore, tdeeStore } = this.props
 		const { setValue, setBodyweight, value } = tdeeStore
 		const handleChange = (e, { value }) => { setValue(value)}
 		const handleInputChange = (e, { value }) => {setBodyweight(value)}
