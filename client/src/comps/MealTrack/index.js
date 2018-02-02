@@ -10,10 +10,10 @@ import LoadingComp from '../loading-comp';
 //Auth Component
 import withAuthorization from '../sessionAcc';
 
-
 @inject('mealTrackStore')
 @observer
 class MealTrack extends Component {
+	
 	constructor(props) {
 		super(props)
 		autorun(() => {

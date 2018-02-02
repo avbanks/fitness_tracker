@@ -20,7 +20,6 @@ class mealTrackStore {
 	@observable meals = [];
 	@observable currentMeals = [];
 	@observable loading = false;
-
 	@action loadMeals = () => {
 		this.loading = true;
 		const ref = firebase.database().ref('users/'+ auth.currentUser['uid']+'/meals')
@@ -31,7 +30,7 @@ class mealTrackStore {
 				const childData = childSnapshot.val()
 				_this.meals.push(childData)
 				})
-			}).then(() => {this.meals = _this.meals; runInAction(()=>this.loading=false)})
+			}).then(() => {this.meals = _this.meals; runInAction(()=>this.loading=false)}).then(() => this.setCurrentMeals())
 		}
 	
 	@action setCurrentMeals = () => {
@@ -44,7 +43,9 @@ class mealTrackStore {
 				newCurrent.push(meal)
 			}
 		})
-		this.dailyMeals = newCurrent 
+		console.log(newCurrent, 'new current')
+		this.currentMeals = newCurrent 
+		console.log(this.currentMeals,'current meals')
 	}
 
 	@action setmealType = (value) => {
@@ -102,7 +103,7 @@ class mealTrackStore {
 				totalFat: this.mealFat
 			}
 		
-		this.dailyMeals = this.dailyMeals.concat(currentMeal)	
+		//this.dailyMeals = this.dailyMeals.concat(currentMeal)	
  		
 		const ref = firebase.database().ref('users/'+ auth.currentUser['uid']+'/meals')
 		ref.once('value', function(snapshot) {
@@ -110,8 +111,7 @@ class mealTrackStore {
 				const childKey = childSnapshot.key
 				const childData = childSnapshot.val()
 			})
-		})
-	  ref.push(currentMeal) 
+		}).then(ref.push(currentMeal)).then(() => this.setCurrentMeals())
 	}
 
 	@action deleteMeal = id => {
@@ -123,7 +123,7 @@ class mealTrackStore {
 					return
 				}
 			})
-		})
+		}).then(() => this.loadMeals())
 	}
 	
 	@action resetStore = () => {

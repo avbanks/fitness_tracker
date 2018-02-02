@@ -11,6 +11,7 @@ class RecentMeals extends Component {
 	}
 
 	render() {
+	console.log(this.props.mealTrackStore.allMeals)
 	return(
 		<Table celled padded>
 			<Table.Header>
@@ -21,8 +22,8 @@ class RecentMeals extends Component {
 				</Table.Row>
 			</Table.Header>
 				<Table.Body>
-					{ !this.props.mealTrackStore.dailyMeals ? null : 
-						this.props.mealTrackStore.dailyMeals.map((items) =>
+					{ !this.props.mealTrackStore.currentMeals ? null : 
+						this.props.mealTrackStore.currentMeals.map((items) =>
 							<Table.Row key={items['id']}>
 								<Table.Cell>{items['timeofday']}</Table.Cell>
 								<Table.Cell>{items['calories']}</Table.Cell>
