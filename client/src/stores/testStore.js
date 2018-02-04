@@ -3,6 +3,8 @@ import firebase, { auth } from './firebase';
 import MobxWebsocketStore from 'mobx-websocket-store';
 
 
+console.log(auth.currentUser)
+
 class testStore {
 	constructor()	{
 		this.data = []
@@ -25,25 +27,9 @@ class testStore {
 
 	getData() {
 		this.atom.reportObserved();
-		console.log(this.data, 'daata')
-		console.log(typeof(this.data.calories))
 		return this.data
 	}
 }
 
 export default new testStore()
 
-/*const ref = firebase.database().ref('users/'+ 'PzcsjlPzZpV7LnVubapm9XxQZqd2'+'/meals')
-
-const store new MobxWebsocketStore(
-	(store) => {
-		console.log("Opening websocket")
-		ref.on("value", refListener.bind(store))
-	},
-	(store) => {
-		console.log("Closing websocket")
-		ref.off("value", refListener.bind(store))
-	}
-);
-
-*/

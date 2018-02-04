@@ -20,6 +20,7 @@ class mealTrackStore {
 	@observable meals = [];
 	@observable currentMeals = [];
 	@observable loading = false;
+	
 	@action loadMeals = () => {
 		this.loading = true;
 		const ref = firebase.database().ref('users/'+ auth.currentUser['uid']+'/meals')
@@ -31,7 +32,7 @@ class mealTrackStore {
 				_this.meals.push(childData)
 				})
 			}).then(() => {this.meals = _this.meals; runInAction(()=>this.loading=false)}).then(() => this.setCurrentMeals())
-		}
+	}
 	
 	@action setCurrentMeals = () => {
 		const ref = firebase.database().ref('users/'+ auth.currentUser['uid']+'/meals')
