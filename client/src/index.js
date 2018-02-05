@@ -15,22 +15,22 @@ import measStore from './stores/measStore';
 import authStore from './stores/authStore';
 
 const stores = {
-	tdeeStore,
-	mealTrackStore,
-	testStore,
-	waterStore,
-	measStore,
-	authStore
+  tdeeStore,
+  mealTrackStore,
+  testStore,
+  waterStore,
+  measStore,
+  authStore,
 };
 
-window.__APP_STATE__= stores;
+window.__APP_STATE__ = stores;
 
 promiseFinally.shim();
 useStrict(true);
 
 ReactDOM.render((
-	<Provider {...stores}>	
-		<HashRouter>
-			<App />
-		</HashRouter>
-	</Provider>), document.getElementById('root'));
+  <Provider {...stores}>
+    <HashRouter>
+      <App />
+    </HashRouter>
+  </Provider>), document.getElementById('root'));

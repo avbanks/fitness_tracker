@@ -2,46 +2,67 @@ import React from 'react';
 import { Form, Header, Input } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
-const SecondSection = props => {
-	
-	const setfirstSection = () => props.setfirstSection()
-	const onSubmit = () => { props.setmealSubmit(); props.resetStore() } 
+const SecondSection = (props) => {
+  const setfirstSection = () => props.setfirstSection();
+  const onSubmit = () => { props.setmealSubmit(); props.resetStore(); };
 
-	return (
-		<div>
-			<Header as="h3" dividing>
+  return (
+    <div>
+      <Header as="h3" dividing>
 				Nutrition Facts
-			</Header>
-			<Form>
-				<Form.Input onChange={e => {
-					props.selection[e.target.name](e.target.value)
-				}} 
-					label="Calories" placeholder="Required" name="setmealCalories" />
-				<Form.Input label="Total Carbohydrates (g)" placeholder="Opional" name="setmealCarbs" onChange={e => {
-					props.selection[e.target.name](e.target.value)
-				}}/>
-				<Form.Field control={Input} label="Protein" placeholder="Optional" name="setmealProtein" onChange={e => {
-						props.selection[e.target.name](e.target.value)}} />
-				<Form.Field control={Input} label="Total Fats (g)" placeholder="Optional" name="setmealFat" onChange={e => {
-					props.selection[e.target.name](e.target.value)}} />
-			<Form.Button onClick={ () => setfirstSection()}>
+      </Header>
+      <Form>
+        <Form.Input
+          onChange={(e) => {
+					props.selection[e.target.name](e.target.value);
+				}}
+          label="Calories"
+          placeholder="Required"
+          name="setmealCalories"
+        />
+        <Form.Input
+          label="Total Carbohydrates (g)"
+          placeholder="Opional"
+          name="setmealCarbs"
+          onChange={(e) => {
+					props.selection[e.target.name](e.target.value);
+				}}
+        />
+        <Form.Field
+          control={Input}
+          label="Protein"
+          placeholder="Optional"
+          name="setmealProtein"
+          onChange={(e) => {
+						props.selection[e.target.name](e.target.value);
+}}
+        />
+        <Form.Field
+          control={Input}
+          label="Total Fats (g)"
+          placeholder="Optional"
+          name="setmealFat"
+          onChange={(e) => {
+					props.selection[e.target.name](e.target.value);
+}}
+        />
+        <Form.Button onClick={() => setfirstSection()}>
 				Back
-			</Form.Button>
-			<Form.Button type="Submit" onClick={(e) => {e.preventDefault();onSubmit()}}>
+        </Form.Button>
+        <Form.Button type="Submit" onClick={(e) => { e.preventDefault(); onSubmit(); }}>
 				Submit
-			</Form.Button>
-			</Form>
-		</div> 
-	)
+        </Form.Button>
+      </Form>
+    </div>
+  );
+};
 
-}
 
-
-//not working properly
+// not working properly
 SecondSection.propTypes = {
-	setfirstSection: PropTypes.func.isRequired,
-	setmealSubmit: PropTypes.func.isRequired,
-	resetStore: PropTypes.func.isRequired
-}
+  setfirstSection: PropTypes.func.isRequired,
+  setmealSubmit: PropTypes.func.isRequired,
+  resetStore: PropTypes.func.isRequired,
+};
 
-export default SecondSection
+export default SecondSection;
