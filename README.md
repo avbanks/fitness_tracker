@@ -1,7 +1,8 @@
 # Fitness Tracker
 App providing functionality similar to MyFitnessPal
 
-App created with React -> Mobx -> Firebase
+App created with React -> Mobx -> Firebase  
+The App is real-time utilizing websockets from Firebase
 
 Entry -> Client
 
