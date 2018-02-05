@@ -1,4 +1,4 @@
-# fitness_tracker
+# Fitness Tracker
 App providing functionality similar to MyFitnessPal
 
 App created with React -> Mobx -> Firebase
