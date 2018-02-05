@@ -1,6 +1,5 @@
 import { Atom } from 'mobx';
 import firebase, { auth } from './firebase';
-import MobxWebsocketStore from 'mobx-websocket-store';
 
 
 console.log(auth.currentUser);

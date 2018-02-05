@@ -9,41 +9,40 @@ class authStore {
 	@observable loginForm = true;
 	@observable authError = false;
 	
-	@action setUser = user => {
-		this.user = user
-	}
-	
-	@action login = () => {
-		auth.signInWithEmailAndPassword(this.email, this.password)
-	}
-
-	@action logOut = () => {
-		auth.signOut()
-	}
-	
-	@action setEmail = email => {
-		this.email = email;
-	}
-	
-	@action setPassword = password => {
-		this.password = password;
-	}
-	
-	@action switchMode = () => {
-		this.loginForm = !this.loginForm
-	}
-	
-	@action registerUser = () => {
-		auth.createUserWithEmailAndPassword(this.email,this.password)
-			.then(((user) => firebase.database().ref('users/' + user.uid).set({
-				username: 'test'	
-			})))
-			.then((() => this.switchMode()))
-	}
-	
-	@action setAuthError = value => {
-		this.authError = value
+	@action setActions = (observ,value) => {
+			switch (observ) {
+				case('user'):	
+					this.user = value
+					break;	
+				case('login'):
+					auth.signInWithEmailAndPassword(this.email, this.password)
+					break;
+				case('email'):
+					this.email = value;
+					break;
+				case('password'):
+					this.password = value;
+					break;
+				case('switchMode'):
+					this.loginForm = !this.loginForm 
+					break;
+				case('logout'):
+					auth.signOut
+					break;
+				case('regiser'):
+					auth.createUserWithEmailAndPassword(this.email,this.password)
+						.then(((user) => firebase.database().ref('users/' + user.uid).set({
+							username: 'test'	
+						})))
+							.then((() => this.switchMode()));
+					break;
+				case('authError'):
+					this.authError = value
+					break;
+				default:
+					console.log('Entered wrong case')
+			}
 	}
 }
-
+	
 export default new authStore()

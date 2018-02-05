@@ -4,7 +4,6 @@ import { Input } from 'semantic-ui-react';
 import LoginForm from './login_form';
 import moment from 'moment';
 import testStore from '../stores/testStore';
-import MobxWebsocketStore from 'mobx-websocket-store';
 import firebase from '../stores/firebase';
 import { compose } from 'recompose';
 import withAuthorization from './sessionAcc';

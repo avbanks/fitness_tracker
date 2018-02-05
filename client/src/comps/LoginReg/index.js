@@ -19,28 +19,28 @@ class LoginReg extends Component {
 		console.log(email,password)
 		auth.signInWithEmailAndPassword(email,password)
 			.then((user) => { 
-				this.props.authStore.setUser(user); console.log(user)
+				this.props.authStore.setActions('user',user); console.log(user)
 			}).then(() => {
 				this.props.history.push(routes.HOME)
-			}).then(() => this.props.authStore.setAuthError(false))
-			.catch(()=> this.props.authStore.setAuthError(true))
+			}).then(() => this.props.authStore.setActions('authError',false))
+			.catch(()=> this.props.authStore.setActions('authError',true))
 	}
 
 	handleChange(name,value) {
 		if(name === 'email') {
-			this.props.authStore.setEmail(value.toString().trim())
+			this.props.authStore.setActions('email',value.toString().trim())
 		}
 		else {
-			this.props.authStore.setPassword(value.toString().trim())
+			this.props.authStore.setActions('password',value.toString().trim())
 		}
 	}
 	
 	handleSwitch() {
-		this.props.authStore.switchMode()
+		this.props.authStore.setActions('switchMode')
 	}
 
 	handleRegister() {
-		this.props.authStore.registerUser()
+		this.props.authStore.setActions('register')
 	}
 	
 	render() {
