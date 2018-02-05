@@ -48,15 +48,12 @@ class DailySummary extends Component {
 					</Grid.Column>
 				</Grid.Row>
 				<Grid.Row >
-					<Message
-						attached={'bottom'}
-						header="Your Daily Summary"
-					/>
+					<Segment.Group horizontal>
 						<Grid.Row columns={3}>
-							<Segment.Group horizontal>
 							<Grid.Column>
 								<Image src="https://randomuser.me/api/portraits/thumb/men/83.jpg" size="medium" />	
 							</Grid.Column>
+						</Grid.Row>
 					</Segment.Group>
 				</Grid.Row>
 			</Grid>
