@@ -7,6 +7,7 @@ console.log(auth.currentUser)
 
 class testStore {
 	constructor()	{
+		console.log(auth.currentUser, 'constructor')
 		this.data = []
 		
 		this.ref = firebase.database().ref('users/'+ 'PzcsjlPzZpV7LnVubapm9XxQZqd2'+'/meals')

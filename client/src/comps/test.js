@@ -6,28 +6,10 @@ import moment from 'moment';
 import testStore from '../stores/testStore';
 import MobxWebsocketStore from 'mobx-websocket-store';
 import firebase from '../stores/firebase';
+import { compose } from 'recompose';
+import withAuthorization from './sessionAcc';
 
-//const form = new LoginForm
-
-/*const ref = firebase.database().ref('users/'+ 'PzcsjlPzZpV7LnVubapm9XxQZqd2'+'/meals')
-const refListener = (snapshot: firebase.database.DataSnapshot) => {
-	this.data = snapshot.val
-	this.atom.reportChanged()
-}
-
-const store = new MobxWebsocketStore(
-	(store) => {
-		console.log("Opening websocket")
-		ref.on("value", refListener.bind(this))
-	},
-	(store) => {
-		console.log("Closing websocket")
-		ref.off("value", refListener.bind(this))
-	}
-);
-*/
-
-	@observer
+@observer
 class Test extends Component {
 	
 	render() {
@@ -54,4 +36,6 @@ class Test extends Component {
 	}
 }
 
-export default Test
+
+const authCondition = authUser => !!authUser;
+export default compose(withAuthorization(authCondition))(Test)

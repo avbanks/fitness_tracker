@@ -9,7 +9,7 @@ import { compose } from 'recompose';
 class DailySummary extends Component {
 	render() {
 		return (
-			<div>
+			/*<div>
 				<Message
 					attached
 					header="Your Daily Summary"
@@ -36,7 +36,30 @@ class DailySummary extends Component {
 					</Grid>
 				</Segment.Group>
 
-			</div>
+			</div>*/
+
+			<Grid>
+				<Grid.Row>
+					<Grid.Column width={16}>
+						<Message
+							attached={'bottom'}
+							header="Your Daily Summary"
+						/>
+					</Grid.Column>
+				</Grid.Row>
+				<Grid.Row >
+					<Message
+						attached={'bottom'}
+						header="Your Daily Summary"
+					/>
+						<Grid.Row columns={3}>
+							<Segment.Group horizontal>
+							<Grid.Column>
+								<Image src="https://randomuser.me/api/portraits/thumb/men/83.jpg" size="medium" />	
+							</Grid.Column>
+					</Segment.Group>
+				</Grid.Row>
+			</Grid>
 		)
 	}
 }
