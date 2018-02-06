@@ -14,7 +14,7 @@ const SecondSection = (props) => {
       <Form>
         <Form.Input
           onChange={(e) => {
-					props.selection[e.target.name](e.target.value);
+					props.setActions(e.target.name,e.target.value);
 				}}
           label="Calories"
           placeholder="Required"
@@ -25,7 +25,7 @@ const SecondSection = (props) => {
           placeholder="Opional"
           name="setmealCarbs"
           onChange={(e) => {
-					props.selection[e.target.name](e.target.value);
+					props.setActions(e.target.name,e.target.value);
 				}}
         />
         <Form.Field
@@ -34,7 +34,7 @@ const SecondSection = (props) => {
           placeholder="Optional"
           name="setmealProtein"
           onChange={(e) => {
-						props.selection[e.target.name](e.target.value);
+					props.setActions(e.target.name,e.target.value);
 }}
         />
         <Form.Field
@@ -43,10 +43,10 @@ const SecondSection = (props) => {
           placeholder="Optional"
           name="setmealFat"
           onChange={(e) => {
-					props.selection[e.target.name](e.target.value);
+					props.setActions(e.target.name,e.target.value);
 }}
         />
-        <Form.Button onClick={() => setfirstSection()}>
+        <Form.Button onClick={() => props.setActions('setFirstSection')}>
 				Back
         </Form.Button>
         <Form.Button type="Submit" onClick={(e) => { e.preventDefault(); onSubmit(); }}>
@@ -59,10 +59,4 @@ const SecondSection = (props) => {
 
 
 // not working properly
-SecondSection.propTypes = {
-  setfirstSection: PropTypes.func.isRequired,
-  setmealSubmit: PropTypes.func.isRequired,
-  resetStore: PropTypes.func.isRequired,
-};
-
 export default SecondSection;

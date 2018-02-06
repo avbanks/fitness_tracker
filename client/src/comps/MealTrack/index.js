@@ -28,7 +28,7 @@ class MealTrack extends Component {
 	
 	render() {
 		const { mealTrackStore } = this.props
-		const { loading, selection, firstSection, date, removeMeal, setDate, setfirstSection, changeDays, resetStore, setmealSubmit, getDailyMeals } = mealTrackStore
+		const { loading, selection, firstSection, date, removeMeal, setDate, setActions, changeDays, resetStore, setmealSubmit, getDailyMeals } = mealTrackStore
 		
 		if(loading) {
 			return ( 
@@ -39,14 +39,14 @@ class MealTrack extends Component {
 		if(firstSection === true) {
 			return (
 				<div>
-					<FirstSection selection={selection} setfirstSection={setfirstSection} date={date} setDate={setDate} changeDays={changeDays} getDailyMeals={getDailyMeals}/>
+					<FirstSection setActions={setActions} date={date} setDate={setDate} changeDays={changeDays} getDailyMeals={getDailyMeals}/>
 					<RecentMeals/>
 				</div>
 			)}
 
 		return (
 			<div>
-				<SecondSection selection={selection} setfirstSection={setfirstSection} resetStore={resetStore} setmealSubmit={setmealSubmit}/>
+				<SecondSection setActions={setActions} resetStore={resetStore} setmealSubmit={setmealSubmit}/>
 			</div>
 		)}
 }

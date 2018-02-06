@@ -49,43 +49,48 @@ class mealTrackStore {
 		console.log(this.currentMeals,'current meals')
 	}
 
-	@action setmealType = (value) => {
-		this.mealType = value;
-			}
-	@action setbrandName = (value) => {
-		this.brandName = value;
-			}
-	@action setmealDesc = (value) => {
-		this.mealDesc = value;
-			}
-	@action setservingSize = (value) => {
-		this.servingSize = value;
-			}
-	@action setservingsPerContainer = (value) => {
-		this.servingsPerContainer = value;
-			}
-	@action setmealCalories = (value) => {
-		this.mealCalories = value;
-			}
-	@action setmealCarbs = (value) => {
-		this.mealCarbs = value;
-			}
-	@action setmealProtein = (value) => {
-		this.mealProtein = value;
-			}
-	@action setmealFat = (value) => {
-		this.mealFat = value;
-			}
-	@action setrecentMeal = (values) => {
-		this.recentMeal = values;
-			}
-	@action setfirstSection = () => {
-		this.firstSection = !this.firstSection;
-			}
-	@action setGoalCalories = (value) => {
-		this.goalCalories = value;
+	@action setActions = (observ, value) => {
+		switch (observ) {
+			case('setmealType'):
+				this.mealType = value;
+				break;
+			case('setbrandName'):
+				this.brandName = value;
+				break;
+			case('setmealDesc'):
+				this.mealDesc = value;
+				break;
+			case('setservingSize'):
+				this.servingSize = value;
+				break;
+			case('setmealCalories'):
+				this.mealCalories = value;
+				break;
+			case('setmealCarbs'):
+				this.mealCarbs = value;
+				break;
+			case('setmealProtein'):
+				this.mealProtein = value;
+				break;
+			case('setmealFat'):
+				this.mealFat = value;
+				break;
+			case('setrecentMeal'):
+				this.recentMeal = value;
+				break;
+			case('setFirstSection'):
+				this.firstSection = !this.firstSection
+				break;
+			case('setGoalCalories'):
+				this.goalCalories = value;
+				break;
+			case('mealSubmit'):
+				return this.mealSubmit
+			default:
+				console.log('Entered wrong case')
+		}
 	}
-
+	
 	@action setmealSubmit = () => {
 		const currentDate = this.date.toString().slice(0,15)
 		const currentMeal = 
@@ -166,20 +171,6 @@ class mealTrackStore {
 		console.log(this.date)
 	}
 
-	
-	selection = { 
-		"setmealType": this.setmealType,
-		"setbrandName": this.setbrandName,
-		"setmealDesc": this.setmealDesc,
-		"setmealCalories": this.setmealCalories,
-		"setmealCarbs": this.setmealCarbs,
-		"setmealProtein": this.setmealProtein,
-		"setmealFat" : this.setmealFat,
-		"setservingsPerContainer": this.setservingsPerContainer,
-		"setservingSize": this.setservingSize,
-		"setfirstSection": this.setfirstSection,
-		"mealSubmit": this.mealSubmit
-	}
 
 }
 

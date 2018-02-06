@@ -15,15 +15,16 @@ import RegisterForm from './register-form';
 class LoginReg extends Component {
 		
 	handleSubmit() {
-		const { email, password } = this.props.authStore
+		const { email, password, setActions } = this.props.authStore
+		const { history } = this.props
 		console.log(email,password)
 		auth.signInWithEmailAndPassword(email,password)
 			.then((user) => { 
-				this.props.authStore.setActions('user',user); console.log(user)
+				setActions('user',user); console.log(user)
 			}).then(() => {
-				this.props.history.push(routes.HOME)
-			}).then(() => this.props.authStore.setActions('authError',false))
-			.catch(()=> this.props.authStore.setActions('authError',true))
+				history.push(routes.HOME)
+			}).then(() => setActions('authError',false))
+			.catch(()=> setActions('authError',true))
 	}
 
 	handleChange(name,value) {
@@ -32,7 +33,7 @@ class LoginReg extends Component {
 			setActions('email',value.toString().trim())
 		}
 		else {
-			this.props.authStore.setActions('password',value.toString().trim())
+			setActions('password',value.toString().trim())
 		}
 	}
 	
@@ -45,7 +46,8 @@ class LoginReg extends Component {
 	}
 	
 	render() {
-		if(this.props.authStore.loginForm){
+		const { loginForm } = this.props.authStore;
+		if(loginForm){
 		return(
 			<LoginForm authError={this.props.authStore.authError} handleSubmit={() => this.handleSubmit()} handleChange={(e, {name, value}) => this.handleChange(name,value)} handleSwitch={() => this.handleSwitch()}/>
 		)}
