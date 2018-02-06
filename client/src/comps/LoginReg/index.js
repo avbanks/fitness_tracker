@@ -13,7 +13,7 @@ import RegisterForm from './register-form';
 @withRouter
 @observer
 class LoginReg extends Component {
-	
+		
 	handleSubmit() {
 		const { email, password } = this.props.authStore
 		console.log(email,password)
@@ -27,8 +27,9 @@ class LoginReg extends Component {
 	}
 
 	handleChange(name,value) {
+		const { setActions } = this.props.authStore
 		if(name === 'email') {
-			this.props.authStore.setActions('email',value.toString().trim())
+			setActions('email',value.toString().trim())
 		}
 		else {
 			this.props.authStore.setActions('password',value.toString().trim())
