@@ -1,15 +1,13 @@
 import { Atom } from 'mobx';
 import firebase, { auth } from './firebase';
+import authStore from './authStore';
 
-
-console.log(auth.currentUser);
 
 class testStore {
-  constructor()	{
-    console.log(auth.currentUser, 'constructor');
+  constructor(user)	{
+		console.log(user, 'user in testStore')
     this.data = [];
-
-    this.ref = firebase.database().ref('users/' + 'PzcsjlPzZpV7LnVubapm9XxQZqd2' + '/meals');
+    this.ref = firebase.database().ref('users/'+user.uid+'/meals');
     this.atom = new Atom(
       'Store',
       () => this.ref.on('value', this.valueListner.bind(this)),
@@ -18,6 +16,7 @@ class testStore {
   }
 
   valueListner(snapshot) {
+		console.log('USER',authStore.user);
     this.data = [];
     snapshot.forEach((childSnap) => {
       this.data.push(childSnap.val());
@@ -31,5 +30,7 @@ class testStore {
   }
 }
 
-export default new testStore();
+export default testStore;
+
+
 

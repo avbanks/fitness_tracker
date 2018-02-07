@@ -7,12 +7,14 @@ import testStore from '../stores/testStore';
 import firebase from '../stores/firebase';
 import { compose } from 'recompose';
 import withAuthorization from './sessionAcc';
+import authStore from '../stores/authStore';
 
 @observer
 class Test extends Component {
 	
 	render() {
-		const data = testStore.getData() 
+		const dataStore = new testStore(authStore.user) 
+		const data = dataStore.getData()
 		console.log(data, 'data')
 		const dataItems = data.map((item) =>
 			  <li>{item.calories}</li>

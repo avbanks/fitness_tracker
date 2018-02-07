@@ -54,8 +54,8 @@ class App extends Component {
 	const { authStore } = this.props		
 	auth.onAuthStateChanged(user => {
 		user
-		? authStore.setUser(user)
-		: authStore.setUser(null);
+		? authStore.setActions('user', user)
+		: authStore.setActions('user',null);
 		});	
 	}
 
@@ -69,11 +69,11 @@ class App extends Component {
 					<Grid.Column width={12} verticalAlign="middle">
 						<Switch>
 							<Route path={routes.TDEE} component={TdeeForm}/>
-							<Route path={routes.MEALTRACK} component={AsyncMealTrack}/>
+							<Route path={routes.MEALTRACK} component={MealTrack}/>
 							<Route path={routes.MEASTRACK} component={MeasTrack}/>
 							<Route path={routes.WATERTRACK} component={WaterTrack}/>
 							<Route path={routes.TEST} component={Test}/>
-							<Route path={routes.LOGINREG} component={AsyncLoginReg}/>
+							<Route path={routes.LOGINREG} component={LoginReg}/>
 							<Route path={routes.HOME} component={DailySummary}/>
 						</Switch>
 					</Grid.Column>
