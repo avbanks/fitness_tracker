@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
 import { Icon, Label, Table } from 'semantic-ui-react';
+import mealsFirebaseStore from '../../stores/meals-firebase-store';
 
-@inject('mealTrackStore')
+@inject('mealTrackStore','authStore')
 @observer
 class RecentMeals extends Component {
 	
@@ -12,6 +13,9 @@ class RecentMeals extends Component {
 
 	render() {
 	console.log(this.props.mealTrackStore.allMeals)
+	const dataStore = new mealsFirebaseStore(this.props.authStore.user.uid)
+	const data = dataStore.getData()
+	console.log('DAAATTTAAAA', data)	
 	return(
 		<Table celled padded>
 			<Table.Header>
