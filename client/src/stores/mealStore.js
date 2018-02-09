@@ -1,6 +1,7 @@
 import { autorun, observable, action, computed, runInAction, toJS } from 'mobx';
 import shortid from 'shortid';
 import firebase, { auth } from './firebase.js';
+import mealsFirebaseStore from '../stores/meals-firebase-store';
 
 class mealTrackStore {
 	
@@ -20,6 +21,7 @@ class mealTrackStore {
 	@observable meals = [];
 	@observable currentMeals = [];
 	@observable loading = false;
+	
 	
 	@action loadMeals = () => {
 		this.loading = true;
@@ -170,7 +172,6 @@ class mealTrackStore {
 		this.date =	newDate
 		console.log(this.date)
 	}
-
 
 }
 

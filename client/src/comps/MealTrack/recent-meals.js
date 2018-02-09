@@ -13,9 +13,8 @@ class RecentMeals extends Component {
 
 	render() {
 	console.log(this.props.mealTrackStore.allMeals)
-	const dataStore = new mealsFirebaseStore(this.props.authStore.user.uid)
-	const data = dataStore.getData()
-	console.log('DAAATTTAAAA', data)	
+	this.props.mealTrackStore.setDat()
+	console.log(this.props.mealTrackStore.dataa)	
 	return(
 		<Table celled padded>
 			<Table.Header>
