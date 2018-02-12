@@ -20,10 +20,7 @@ class NavBar extends Component {
 	render() {
 		return (
 			<Menu vertical>
-				<Menu.Header name='home' onClick={() => this.handleClick('/')}>
-					Home
-				</Menu.Header>
-				{ this.props.authStore.user ? 
+					{ this.props.authStore.user ? 
 					<div>
 					<Dropdown item text="Add Entry">
 					<Dropdown.Menu>

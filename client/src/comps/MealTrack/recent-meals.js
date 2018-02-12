@@ -13,8 +13,6 @@ class RecentMeals extends Component {
 
 	render() {
 	console.log(this.props.mealTrackStore.allMeals)
-	this.props.mealTrackStore.setDat()
-	console.log(this.props.mealTrackStore.dataa)	
 	return(
 		<Table celled padded>
 			<Table.Header>

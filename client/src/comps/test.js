@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
-import { Input } from 'semantic-ui-react';
+import { Input, Grid } from 'semantic-ui-react';
 import LoginForm from './login_form';
 import moment from 'moment';
 import testStore from '../stores/testStore';
@@ -9,11 +9,28 @@ import { compose } from 'recompose';
 import withAuthorization from './sessionAcc';
 import authStore from '../stores/authStore';
 
+
 @observer
 class Test extends Component {
 	
 	render() {
-		const dataStore = new testStore(authStore.user) 
+		return(		
+			<Grid>
+
+			</Grid>
+		)
+	}
+}
+
+
+const authCondition = authUser => !!authUser;
+export default compose(withAuthorization(authCondition))(Test)
+
+
+
+
+
+/*const dataStore = new testStore(authStore.user) 
 		const data = dataStore.getData()
 		console.log(data, 'data')
 		const dataItems = data.map((item) =>
@@ -25,11 +42,11 @@ class Test extends Component {
 			</div>
 					)
 	}
-}
+*/
 
 
-const authCondition = authUser => !!authUser;
-export default compose(withAuthorization(authCondition))(Test)
+
+
 
 
 /*<form>	
