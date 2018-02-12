@@ -23,20 +23,23 @@ class Test extends Component {
 			<div> 
 				<ul>{dataItems}</ul>
 			</div>
-			/*<form>	
-					<Input {...form.$('email').bind()} error={form.$('email').error}/><br/>
-					<Input {...form.$('password').bind()}/><br/>
-					<Input {...form.$('passwordConfirmation').bind()}/><br/>
-					<p>{form.$('email').error}</p>
-					<p>{form.$('password').error}</p>
-					<p>{form.$('passwordConfirmation').error}</p>
-					{console.log(form.$('email').error)}
-					{console.log(form.$('password').hasError)}
-				</form>*/
-		)
+					)
 	}
 }
 
 
 const authCondition = authUser => !!authUser;
 export default compose(withAuthorization(authCondition))(Test)
+
+
+/*<form>	
+ *					<Input {...form.$('email').bind()} error={form.$('email').error}/><br/>
+ *										<Input {...form.$('password').bind()}/><br/>
+ *															<Input {...form.$('passwordConfirmation').bind()}/><br/>
+ *																				<p>{form.$('email').error}</p>
+ *																									<p>{form.$('password').error}</p>
+ *																														<p>{form.$('passwordConfirmation').error}</p>
+ *																																			{console.log(form.$('email').error)}
+ *																																								{console.log(form.$('password').hasError)}
+ *																																												</form>*/
+
