@@ -17,7 +17,7 @@ class TdeeForm extends Component {
 			<Grid>
 				<Grid.Row>
 					<Grid.Column width={4}>
-						<BodyweightForm setBodyweight={setBodyweight} setValue={setValue} totalCals={totalCals} />
+						<BodyweightForm setBodyweight={setBodyweight} setValue={setValue} totalCals={totalCals} value={value} />
 					</Grid.Column>
 					<Grid.Column width={4}>
 						<Form onSubmit={() => { measStore.setCalorieGoals(document.querySelector("[name='setCalorieGoals']").value);measStore.setTargetWeight(document.querySelector("[name='setTargetWeight']").value)}}>

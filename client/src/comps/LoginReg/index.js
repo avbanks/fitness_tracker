@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Message, Button } from 'semantic-ui-react';
+import { Grid, Form, Message, Button } from 'semantic-ui-react';
 import { observer, inject } from 'mobx-react';
 import { withRouter } from 'react-router-dom';
 import { auth } from '../../stores/firebase.js';
@@ -36,7 +36,6 @@ class LoginReg extends Component {
 			setActions('password',value.toString().trim())
 		}
 	}
-	
 	handleSwitch() {
 		this.props.authStore.setActions('switchMode')
 	}
@@ -44,12 +43,24 @@ class LoginReg extends Component {
 	handleRegister() {
 		this.props.authStore.setActions('register')
 	}
-	
 	render() {
 		const { loginForm } = this.props.authStore;
 		if(loginForm){
 		return(
-			<LoginForm authError={this.props.authStore.authError} handleSubmit={() => this.handleSubmit()} handleChange={(e, {name, value}) => this.handleChange(name,value)} handleSwitch={() => this.handleSwitch()}/>
+		<div className="login-form">
+		<style>{`
+      body > div,
+      body > div > div,
+      body > div > div > div.login-form {
+        height: 100%;
+      }
+    `}</style>
+		<Grid textAlign='center' style={{ height: '100' }} verticalAlign='middle'>
+			<Grid.Column style={{ maxWidth : 450 }} >
+				<LoginForm authError={this.props.authStore.authError} handleSubmit={() => this.handleSubmit()} handleChange={(e, {name, value}) => this.handleChange(name,value)} handleSwitch={() => this.handleSwitch()}/>
+			</Grid.Column>	
+		</Grid>
+		</div>
 		)}
 		else {
 			return(

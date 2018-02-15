@@ -7,9 +7,8 @@ const BodyweightForm = props => {
 	
 	const handleInputChange = (e, { value }) => {props.setBodyweight(value)}
 	const handleChange = (e, { value }) => { props.setValue(value)}
-	const totalCals = props.totalCals	
-	let value 
-	console.log('value',value)
+	const  totalCals = props.totalCals	
+	let value = props.value
 	return(
 		<Form>
 			<Form.Group>
@@ -28,7 +27,6 @@ const BodyweightForm = props => {
 				<Form.Field control={Input} readOnly value={totalCals} label='Estimated Daily Calories'/>	
 			</Form.Group>
 		</Form>
-
 	)
 }
 
