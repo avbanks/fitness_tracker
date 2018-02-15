@@ -1,12 +1,15 @@
 import React from 'react'
+import { Form, Radio, Input } from 'semantic-ui-react'
 
 
 
-const BodyweightFrom = props => {
+const BodyweightForm = props => {
 	
-	const handleInputChange = (e, { value }) => {setBodyweight(value)}
-	const handleChange = (e, { value }) => { setValue(value)}
-	const totalCals = props.tdeeStore.totalCals	
+	const handleInputChange = (e, { value }) => {props.setBodyweight(value)}
+	const handleChange = (e, { value }) => { props.setValue(value)}
+	const totalCals = props.totalCals	
+	let value 
+	console.log('value',value)
 	return(
 		<Form>
 			<Form.Group>
@@ -22,11 +25,11 @@ const BodyweightFrom = props => {
 				<Form.Field control={Radio} value='19' checked={ value === '19' } label='Heavy Bulk' onChange={handleChange} />
 			</Form.Group>
 			<Form.Group>
-				<Form.Field control={Input} readOnly value={toalCals} label='Estimated Daily Calories'/>	
+				<Form.Field control={Input} readOnly value={totalCals} label='Estimated Daily Calories'/>	
 			</Form.Group>
 		</Form>
 
 	)
 }
 
-export default BodyweightFrom
+export default BodyweightForm

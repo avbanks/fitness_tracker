@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Form, Input, Grid, Radio } from 'semantic-ui-react';
 import { observer, inject } from 'mobx-react';
-import withAuthorization from './sessionAcc';
+import withAuthorization from '../sessionAcc';
 import { compose } from 'recompose';
 import BodyweightForm from './bodyweight-form';
 
@@ -10,14 +10,14 @@ import BodyweightForm from './bodyweight-form';
 class TdeeForm extends Component {
 	render() {
 		const { measStore, tdeeStore } = this.props
-		const { setValue, setBodyweight, value } = tdeeStore
+		const { setValue, setBodyweight, value, totalCals } = tdeeStore
 		const setTargetsClick = measStore.setTargets()
 		
 			return (
 			<Grid>
 				<Grid.Row>
 					<Grid.Column width={4}>
-						<BodyweightForm/>
+						<BodyweightForm setBodyweight={setBodyweight} setValue={setValue} totalCals={totalCals} />
 					</Grid.Column>
 					<Grid.Column width={4}>
 						<Form onSubmit={() => { measStore.setCalorieGoals(document.querySelector("[name='setCalorieGoals']").value);measStore.setTargetWeight(document.querySelector("[name='setTargetWeight']").value)}}>
