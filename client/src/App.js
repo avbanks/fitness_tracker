@@ -61,7 +61,7 @@ class App extends Component {
 
   render() {
     return (
-			<Grid>	
+			<Grid style={{ height: '100%' }}>	
 			<DevTools/>	
 					<Grid.Column width={3}>
 						<NavBar/>

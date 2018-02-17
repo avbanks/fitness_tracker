@@ -47,20 +47,7 @@ class LoginReg extends Component {
 		const { loginForm } = this.props.authStore;
 		if(loginForm){
 		return(
-		<div className="login-form">
-		<style>{`
-      body > div,
-      body > div > div,
-      body > div > div > div.login-form {
-        height: 100%;
-      }
-    `}</style>
-		<Grid textAlign='center' style={{ height: '100' }} verticalAlign='middle'>
-			<Grid.Column style={{ maxWidth : 450 }} >
-				<LoginForm authError={this.props.authStore.authError} handleSubmit={() => this.handleSubmit()} handleChange={(e, {name, value}) => this.handleChange(name,value)} handleSwitch={() => this.handleSwitch()}/>
-			</Grid.Column>	
-		</Grid>
-		</div>
+			<LoginForm authError={this.props.authStore.authError} handleSubmit={() => this.handleSubmit()} handleChange={(e, {name, value}) => this.handleChange(name,value)} handleSwitch={() => this.handleSwitch()}/>
 		)}
 		else {
 			return(
