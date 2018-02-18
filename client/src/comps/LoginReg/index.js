@@ -51,7 +51,7 @@ class LoginReg extends Component {
 		)}
 		else {
 			return(
-			<RegisterForm handleChange={(e, {name,value}) => this.handleChange(name,value)} handleRegister={() => this.handleRegister()}/>
+			<RegisterForm handleChange={(e, {name,value}) => this.handleChange(name,value)} handleRegister={() => this.handleRegister()} handleSwitch={() => this.handleSwitch()}/>
 			)
 		}
 	}

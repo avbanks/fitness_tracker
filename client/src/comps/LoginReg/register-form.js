@@ -12,7 +12,7 @@ const RegisterForm = props => (
 				<Form.Button onClick={props.handleRegister} fluid>
 						Register
 				</Form.Button>
-				<Form.Button fluid>
+				<Form.Button fluid onClick={props.handleSwitch}>
 						Cancel
 				</Form.Button>
 			</Form>

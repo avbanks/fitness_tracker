@@ -1,0 +1,58 @@
+import React, { Component } from 'react';
+import { Menu, Dropdown } from 'semantic-ui-react';
+import { withRouter } from 'react-router-dom';
+import { inject, observer } from 'mobx-react';
+import { auth } from '../stores/firebase';
+
+@inject('authStore')
+@withRouter
+@observer
+class NavBar extends Component {
+	
+	handleClick(path) {
+		this.props.history.push(path)
+	}
+	
+	handleLogOut() {
+		auth.signOut()
+	}
+	
+	render() {
+		return (
+			<Menu vertical>
+					{ this.props.authStore.user ? 
+					<div>
+					<Dropdown item text="Add Entry">
+					<Dropdown.Menu>
+						<Dropdown.Item icon='tint' text='Water' onClick={() => this.handleClick('watertrack')}/>
+						<Dropdown.Item icon='food' text='Food'onClick={() => this.handleClick('mealtrack')}/>
+						<Dropdown.Item icon='bicycle' text='Exercise' onClick={()=> this.handleClick('/')}/>
+						<Dropdown.Item icon='area graph' text='Weight' onClick={()=> this.handleClick('meastrack')}/>
+					</Dropdown.Menu>
+					</Dropdown>
+					<Menu.Item name='tdee' onClick={() => this.handleClick('/tdee')}>
+							TDEE Calculator	
+					</Menu.Item>
+					<Menu.Item name='profile'>
+							Profile	
+					</Menu.Item>
+					<Menu.Item onClick={() => { console.log('click'); this.handleLogOut()}}>
+						Logout
+					</Menu.Item> 
+				</div>
+					:
+				<div>
+					<Menu.Item>
+						Fitr
+					</Menu.Item>
+					<Menu.Item>
+						Register
+					</Menu.Item>		
+				</div>
+					}
+			</Menu>
+		)
+	}
+}
+
+export default NavBar

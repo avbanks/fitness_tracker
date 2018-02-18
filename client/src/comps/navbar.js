@@ -3,6 +3,7 @@ import { Menu, Dropdown } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
 import { inject, observer } from 'mobx-react';
 import { auth } from '../stores/firebase';
+import LoggedIn from './NavBar/logged-in-nav';
 
 @inject('authStore')
 @withRouter
@@ -22,25 +23,18 @@ class NavBar extends Component {
 			<Menu vertical>
 					{ this.props.authStore.user ? 
 					<div>
-					<Dropdown item text="Add Entry">
-					<Dropdown.Menu>
-						<Dropdown.Item icon='tint' text='Water' onClick={() => this.handleClick('watertrack')}/>
-						<Dropdown.Item icon='food' text='Food'onClick={() => this.handleClick('mealtrack')}/>
-						<Dropdown.Item icon='bicycle' text='Exercise' onClick={()=> this.handleClick('/')}/>
-						<Dropdown.Item icon='area graph' text='Weight' onClick={()=> this.handleClick('meastrack')}/>
-					</Dropdown.Menu>
-					</Dropdown>
-					<Menu.Item name='tdee' onClick={() => this.handleClick('/tdee')}>
-							TDEE Calculator	
+						<LoggedIn history={this.props.history} handleLogOut={this.handleLogOut}/>	
+					</div>
+					:
+				<div>
+					<Menu.Item>
+						Fitr
 					</Menu.Item>
-					<Menu.Item name='profile'>
-							Profile	
-					</Menu.Item>
-					<Menu.Item onClick={() => { console.log('click'); this.handleLogOut()}}>
-						Logout
-					</Menu.Item> 
+					<Menu.Item>
+						Register
+					</Menu.Item>		
 				</div>
-					:null }
+					}
 			</Menu>
 		)
 	}
