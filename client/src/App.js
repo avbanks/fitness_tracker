@@ -7,7 +7,7 @@ import Loadable from 'react-loadable';
 //components
 import TdeeForm from './comps/TdeeForm';
 import MealTrack from './comps/MealTrack';
-import NavBar from './comps/navbar';
+import NavBar from './comps/NavBar';
 import Test from './comps/test';
 import WaterTrack from './comps/water_track';
 import DailySummary from './comps/daily_summary';
