@@ -4,12 +4,14 @@ import { Menu } from 'semantic-ui-react';
 const LoggedOut = () => {
 	
 	return (
-		<Menu.Item>
-			Fitr
-		</Menu.Item>
-		<Menu.Item>
-			Register
-		</Menu.Item>		
+		<div>
+			<Menu.Item>
+				Fitr
+			</Menu.Item>
+			<Menu.Item>
+				Register
+			</Menu.Item>		
+		</div>
 	)
 }
 

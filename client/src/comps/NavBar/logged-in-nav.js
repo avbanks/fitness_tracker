@@ -26,7 +26,7 @@ const LoggedIn = props => {
 					<Menu.Item name='profile'>
 							Profile	
 					</Menu.Item>
-					<Menu.Item onClick={() => { props.handleLogOut()}}>
+					<Menu.Item onClick={() => { handleLogOut()}}>
 							Logout
 					</Menu.Item> 
 		</div>

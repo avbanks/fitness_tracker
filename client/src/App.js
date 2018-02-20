@@ -7,7 +7,7 @@ import Loadable from 'react-loadable';
 //components
 import TdeeForm from './comps/TdeeForm';
 import MealTrack from './comps/MealTrack';
-import NavBar from './comps/NavBar';
+import NavBar from './comps/NavBar/index';
 import Test from './comps/test';
 import WaterTrack from './comps/water_track';
 import DailySummary from './comps/daily_summary';
@@ -66,7 +66,7 @@ class App extends Component {
 					<Grid.Column width={3}>
 						<NavBar/>
 					</Grid.Column>
-					<Grid.Column width={12} verticalAlign="middle">
+					<Grid.Column width={12} >
 						<Switch>
 							<Route path={routes.TDEE} component={TdeeForm}/>
 							<Route path={routes.MEALTRACK} component={MealTrack}/>
