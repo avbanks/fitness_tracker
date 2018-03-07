@@ -15,9 +15,9 @@ class Test extends Component {
 	
 	render() {
 		return(		
-			<Grid>
-
-			</Grid>
+			<div>
+				{testStore}
+			</div>
 		)
 	}
 }
