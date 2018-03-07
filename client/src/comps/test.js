@@ -8,7 +8,7 @@ import firebase from '../stores/firebase';
 import { compose } from 'recompose';
 import withAuthorization from './sessionAcc';
 import authStore from '../stores/authStore';
-
+import getCurrentmeals from '../helpers/get-current-meals';
 
 @observer
 class Test extends Component {
@@ -16,11 +16,15 @@ class Test extends Component {
 	render() {
 		const dataStore = new testStore(authStore.user) 
 		const data = dataStore.getData()
-		console.log(data, 'data')
+		const currentMeals = getCurrentmeals(data, 'Wed Jan 31 2018')
+		const listItems = currentMeals.map((item) => 
+			<li>{item.val().calories}</li>
+		)
 		return( 
 			<div> 
+				<ul>{listItems}</ul>
 			</div>
-					)
+		)
 	}	
 }
 
