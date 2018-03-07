@@ -14,12 +14,14 @@ import authStore from '../stores/authStore';
 class Test extends Component {
 	
 	render() {
-		return(		
-			<div>
-				{testStore}
+		const dataStore = new testStore(authStore.user) 
+		const data = dataStore.getData()
+		console.log(data, 'data')
+		return( 
+			<div> 
 			</div>
-		)
-	}
+					)
+	}	
 }
 
 

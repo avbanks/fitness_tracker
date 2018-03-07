@@ -5,7 +5,6 @@ import authStore from './authStore';
 
 class testStore {
   constructor(user)	{
-		console.log(user, 'user in testStore')
     this.data = [];
     this.ref = firebase.database().ref('users/'+user.uid+'/meals');
     this.atom = new Atom(
@@ -16,12 +15,8 @@ class testStore {
   }
 
   valueListner(snapshot) {
-		console.log('USER',authStore.user);
-    this.data = [];
-    snapshot.forEach((childSnap) => {
-      this.data.push(childSnap.val());
-      this.atom.reportChanged();
-    });
+    this.data = snapshot;
+    this.atom.reportChanged();
   }
 
   getData() {
