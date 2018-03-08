@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Form, Icon, Input, Select } from 'semantic-ui-react';
 import DatePicker from 'react-date-picker';
 import PropTypes from 'prop-types';
+import SecondSection from './second-section';
 
 
 // Components shows the first section of the form to add meals
@@ -30,10 +31,8 @@ const FirstSection = (props) => {
           <Form.Field control={Input} label="Servings per container" placeholder="1" name="setservingsPerContainer" onChange={(e) => { props.setActions(e.target.name,e.target.value); }} />
         </Form.Group>
       </Form>
-      <Button onClick={(e) => { e.preventDefault(); e.stopPropagation(); props.setActions('setFirstSection'); }}>
-						Next
-      </Button>
-    </div>
+			<SecondSection/>  
+		</div>
   );
 };
 

@@ -17,7 +17,6 @@ class MealTrack extends Component {
 	constructor(props) {
 		super(props)
 		autorun(() => {
-			console.log('auto', this.props.mealTrackStore.date)	
 			this.props.mealTrackStore.setCurrentMeals()
 		})
 	}

@@ -46,9 +46,7 @@ class mealTrackStore {
 				newCurrent.push(meal)
 			}
 		})
-		console.log(newCurrent, 'new current')
 		this.currentMeals = newCurrent 
-		console.log(this.currentMeals,'current meals')
 	}
 
 	@action setActions = (observ, value) => {
@@ -131,7 +129,7 @@ class mealTrackStore {
 					return
 				}
 			})
-		}).then(() => this.loadMeals())
+		})
 	}
 	
 	@action resetStore = () => {
@@ -170,7 +168,6 @@ class mealTrackStore {
 		}
 		const newDate = this.date.changeDays(days)
 		this.date =	newDate
-		console.log(this.date)
 	}
 
 }

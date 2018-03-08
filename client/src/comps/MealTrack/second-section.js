@@ -8,11 +8,9 @@ const SecondSection = (props) => {
 
   return (
     <div>
-      <Header as="h3" dividing>
-				Nutrition Facts
-      </Header>
-      <Form>
-        <Form.Input
+			<Form>
+			 <Form.Group> 
+				<Form.Input
           onChange={(e) => {
 					props.setActions(e.target.name,e.target.value);
 				}}
@@ -46,12 +44,10 @@ const SecondSection = (props) => {
 					props.setActions(e.target.name,e.target.value);
 }}
         />
-        <Form.Button onClick={() => props.setActions('setFirstSection')}>
-				Back
-        </Form.Button>
-        <Form.Button type="Submit" onClick={(e) => { e.preventDefault(); onSubmit(); }}>
-				Submit
-        </Form.Button>
+      	</Form.Group>
+					<Form.Button type="Submit" onClick={(e) => { e.preventDefault(); onSubmit(); }}>
+					Submit
+					</Form.Button>
       </Form>
     </div>
   );
