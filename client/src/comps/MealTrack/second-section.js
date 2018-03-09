@@ -3,7 +3,6 @@ import { Form, Header, Input } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
 const SecondSection = (props) => {
-  const setfirstSection = () => props.setfirstSection();
   const onSubmit = () => { props.setmealSubmit(); props.resetStore(); };
 
   return (

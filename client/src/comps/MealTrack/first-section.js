@@ -31,7 +31,7 @@ const FirstSection = (props) => {
           <Form.Field control={Input} label="Servings per container" placeholder="1" name="setservingsPerContainer" onChange={(e) => { props.setActions(e.target.name,e.target.value); }} />
         </Form.Group>
       </Form>
-			<SecondSection/>  
+			<SecondSection setActions={props.setActions} setmealSubmit={props.setmealSubmit} />  
 		</div>
   );
 };

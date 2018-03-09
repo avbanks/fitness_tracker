@@ -38,7 +38,7 @@ class MealTrack extends Component {
 		if(firstSection === true) {
 			return (
 				<div>
-					<FirstSection setActions={setActions} date={date} setDate={setDate} changeDays={changeDays} getDailyMeals={getDailyMeals}/>
+					<FirstSection setmealSubmit={setmealSubmit} setActions={setActions} date={date} setDate={setDate} changeDays={changeDays} getDailyMeals={getDailyMeals}/>
 					<RecentMeals/>
 				</div>
 			)}

@@ -33,7 +33,8 @@ class mealTrackStore {
 				const childData = childSnapshot.val()
 				_this.meals.push(childData)
 				})
-			}).then(() => {this.meals = _this.meals; runInAction(()=>this.loading=false)}).then(() => this.setCurrentMeals())
+			//runInAction modify observable while in action/function
+			}).then(() => {this.meals = _this.meals; runInAction(()=>this.loading=false)})
 	}
 	
 	@action setCurrentMeals = () => {
