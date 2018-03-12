@@ -14,7 +14,7 @@ const LoginForm = (props) => {
     ));
 
   return (
-	<Grid textAlign='center' style={{ height: '100' }} verticalAlign='middle'>
+	<Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
 		<Grid.Column style={{ maxWidth : 450 }} >
 			<Form>
 				<Form.Input icon="user" iconPosition="left" placeholder="E-mail address" name="email" error={props.authError} onChange={props.handleChange} />
