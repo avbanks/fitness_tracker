@@ -23,7 +23,7 @@ const FirstSection = (props) => {
       <DatePicker value={props.date} onChange={value => onChange(value)} />
       <Icon link name="chevron right" size="large" onClick={() => onClick(1)} />
       <Form>
-        <Form.Group>
+        <Form.Group widths={3}>
           <Form.Field control={Select} label="Select Meal Type" options={options} name="setmealType" onChange={(e, { name, value }) => { props.setActions(name,value); }} />
           <Form.Field control={Input} label="Brand Name" placeholder="ex. Campbell's" name="setbrandName" onChange={(e) => { props.setActions(e.target.name,e.target.value); }} />
           <Form.Field control={Input} label="Description" placeholder="ex. Chicken Soup" name="setmealDesc" onChange={(e) => { props.setActions(e.target.name,e.target.value); }} />

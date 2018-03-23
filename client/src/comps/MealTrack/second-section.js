@@ -8,7 +8,7 @@ const SecondSection = (props) => {
   return (
     <div>
 			<Form>
-			 <Form.Group> 
+			 <Form.Group widths={3}> 
 				<Form.Input
           onChange={(e) => {
 					props.setActions(e.target.name,e.target.value);

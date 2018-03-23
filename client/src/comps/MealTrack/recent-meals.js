@@ -22,7 +22,12 @@ class RecentMeals extends Component {
 			<Table.Cell>{item.val().timeofday}</Table.Cell>
 			<Table.Cell>{item.val().brand}</Table.Cell>
 			<Table.Cell>{item.val().description}</Table.Cell>
+			<Table.Cell>{item.val().servingSize}</Table.Cell>
+			<Table.Cell>{item.val().servingsPer}</Table.Cell>
 			<Table.Cell>{item.val().calories}</Table.Cell>
+			<Table.Cell>{item.val().carbs}</Table.Cell>
+			<Table.Cell>{item.val().protein}</Table.Cell>
+			<Table.Cell>{item.val().fat}</Table.Cell>
 			<Table.Cell><Label onClick={() => null}><Icon link name="write"/></Label></Table.Cell>
 			<Table.Cell><Label onClick={() => removeItem(item.val().id)}><Icon link name="remove"/></Label></Table.Cell>
 			<Table.Cell><Input placeholder="test" defaultValue="sgo"/></Table.Cell>
