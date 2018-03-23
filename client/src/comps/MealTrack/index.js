@@ -35,20 +35,15 @@ class MealTrack extends Component {
 			)
 		}
 
-		if(firstSection === true) {
 			return (
 				<div>
 					<FirstSection setmealSubmit={setmealSubmit} setActions={setActions} date={date} setDate={setDate} changeDays={changeDays} getDailyMeals={getDailyMeals}/>
 					<RecentMeals/>
 				</div>
-			)}
-
-		return (
-			<div>
-				<SecondSection setActions={setActions} resetStore={resetStore} setmealSubmit={setmealSubmit}/>
-			</div>
-		)}
+			)
+	}
 }
+
 
 const authCondition = authUser => !!authUser;
 

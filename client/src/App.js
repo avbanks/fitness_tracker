@@ -17,7 +17,6 @@ import LoadingComp from './comps/loading-comp';
 //constants
 import * as routes from './constants/routes';
 //devtools
-import DevTools from 'mobx-react-devtools';
 
 const AsyncTest = Loadable({
 	loader: () => import('./comps/test'),
@@ -62,7 +61,6 @@ class App extends Component {
   render() {
     return (
 			<Grid style={{ height: '100%' }}>	
-			<DevTools/>	
 					<Grid.Column width={3}>
 						<NavBar/>
 					</Grid.Column>

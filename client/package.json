@@ -37,7 +37,6 @@
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.6.1",
     "jest": "^22.3.0",
-    "jest-cli": "^22.3.0",
-    "mobx-react-devtools": "^4.2.15"
+    "jest-cli": "^22.3.0"
   }
 }

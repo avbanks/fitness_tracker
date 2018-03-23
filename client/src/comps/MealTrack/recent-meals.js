@@ -20,6 +20,7 @@ class RecentMeals extends Component {
 	const listItems = currentMeals.map( item => 
 		<Table.Row key={item.val().id}>
 			<Table.Cell>{item.val().timeofday}</Table.Cell>
+			<Table.Cell>{item.val().brand}</Table.Cell>
 			<Table.Cell>{item.val().description}</Table.Cell>
 			<Table.Cell>{item.val().calories}</Table.Cell>
 			<Table.Cell><Label onClick={() => null}><Icon link name="write"/></Label></Table.Cell>
@@ -32,12 +33,16 @@ class RecentMeals extends Component {
 			<Table celled padded>
 				<Table.Header>
 					<Table.Row>
-						<Table.HeaderCell>Meal</Table.HeaderCell>
-						<Table.HeaderCell>Description</Table.HeaderCell>
-						<Table.HeaderCell collapsing>Calories </Table.HeaderCell>
-						<Table.HeaderCell collapsing>Edit</Table.HeaderCell>
+						<Table.HeaderCell collapsing>Meal</Table.HeaderCell>
+						<Table.HeaderCell collapsing>Brand</Table.HeaderCell>
+						<Table.HeaderCell collapsing>Description</Table.HeaderCell>
+						<Table.HeaderCell collapsing>Serving Size</Table.HeaderCell>
+						<Table.HeaderCell collapsing>Servings Per</Table.HeaderCell>
+						<Table.HeaderCell collapsing>Calories</Table.HeaderCell>
+						<Table.HeaderCell collapsing>Carbs</Table.HeaderCell>
+						<Table.HeaderCell collapsing>Protein</Table.HeaderCell>
+						<Table.HeaderCell collapsing>Fat</Table.HeaderCell>
 						<Table.HeaderCell collapsing>Delete</Table.HeaderCell>
-						<Table.HeaderCell collapsing>Test</Table.HeaderCell>
 					</Table.Row>
 				</Table.Header>
 						{ !this.props.mealTrackStore.currentMeals ? null : 
