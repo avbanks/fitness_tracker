@@ -4,7 +4,6 @@ import { observer, inject } from 'mobx-react';
 import { compose } from 'recompose';
 //Components
 import FirstSection from './first-section';
-import SecondSection from './second-section';
 import RecentMeals from './recent-meals';
 import LoadingComp from '../loading-comp';
 //Auth Component
@@ -27,7 +26,7 @@ class MealTrack extends Component {
 	
 	render() {
 		const { mealTrackStore } = this.props
-		const { loading, selection, firstSection, date, removeMeal, setDate, setActions, changeDays, resetStore, setmealSubmit, getDailyMeals } = mealTrackStore
+		const { loading, date, setDate, setActions, changeDays, setmealSubmit, getDailyMeals } = mealTrackStore
 		
 		if(loading) {
 			return ( 
@@ -37,7 +36,14 @@ class MealTrack extends Component {
 
 			return (
 				<div>
-					<FirstSection setmealSubmit={setmealSubmit} setActions={setActions} date={date} setDate={setDate} changeDays={changeDays} getDailyMeals={getDailyMeals}/>
+					<FirstSection 
+						setmealSubmit={setmealSubmit} 
+						setActions={setActions} 
+						date={date} 
+						setDate={setDate} 
+						changeDays={changeDays} 
+						getDailyMeals={getDailyMeals}
+					/>
 					<RecentMeals/>
 				</div>
 			)

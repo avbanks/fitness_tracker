@@ -47,11 +47,20 @@ class LoginReg extends Component {
 		const { loginForm } = this.props.authStore;
 		if(loginForm){
 		return(
-			<LoginForm authError={this.props.authStore.authError} handleSubmit={() => this.handleSubmit()} handleChange={(e, {name, value}) => this.handleChange(name,value)} handleSwitch={() => this.handleSwitch()}/>
+			<LoginForm 
+				authError={this.props.authStore.authError} 
+				handleSubmit={() => this.handleSubmit()} 
+				handleChange={(e, {name, value}) => this.handleChange(name,value)} 
+				handleSwitch={() => this.handleSwitch()}
+			/>
 		)}
 		else {
 			return(
-			<RegisterForm handleChange={(e, {name,value}) => this.handleChange(name,value)} handleRegister={() => this.handleRegister()} handleSwitch={() => this.handleSwitch()}/>
+			<RegisterForm 
+				handleChange={(e, {name,value}) => this.handleChange(name,value)} 
+				handleRegister={() => this.handleRegister()} 
+				handleSwitch={() => this.handleSwitch()}
+			/>
 			)
 		}
 	}

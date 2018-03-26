@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Menu, Dropdown } from 'semantic-ui-react';
+import { Menu } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
 import { inject, observer } from 'mobx-react';
-import { auth } from '../../stores/firebase';
 import LoggedIn from './logged-in-nav';
 import LoggedOut from './logged-out-nav';
 

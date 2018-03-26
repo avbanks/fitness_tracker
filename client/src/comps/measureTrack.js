@@ -4,13 +4,16 @@ import { Table, Form } from 'semantic-ui-react';
 import moment from 'moment'
 import { compose } from 'recompose';
 import withAuthorization from './sessionAcc';
+import DateSelection from './datepicker';
 
-@inject('measStore')
+@inject('measStore','mealTrackStore')
 @observer
 class MeasTrack extends Component{
 	
 	render() {
 		const { measStore } = this.props
+		const { mealTrackStore } = this.props
+		const { date, setDate, changeDays } = mealTrackStore 
 			
 		const TableContent = (measStore.sortedWeightHistory.map((items) => 
 			<Table.Row>
@@ -23,10 +26,24 @@ class MeasTrack extends Component{
 		<div>	
 			<div>	
 				<div>	
+					<DateSelection 
+						date={date}	
+						changeDays={changeDays} 
+						setDate={setDate} 
+					/>
 					<Form onSubmit={ () => { measStore.setDate(document.querySelector("[name='setDate']").value); measStore.addToWeightHistory()}}>
 						<Form.Group >
-							<Form.Input name="setWeight" label={'Enter Weight'} placeholder="lbs" onChange={ (e) =>  {measStore.setWeight(e.target.value)}}/>		
-							<Form.Input name="setDate" label={'Enter Date'} defaultValue={moment().format('l')}/>
+							<Form.Input 
+								name="setWeight" 
+								label={'Enter Weight'} 
+								placeholder="lbs" 
+								onChange={ (e) =>  {measStore.setWeight(e.target.value)}}
+							/>		
+							<Form.Input 
+								name="setDate" 
+								label={'Enter Date'} 
+								defaultValue={moment().format('l')}
+							/>
 						</Form.Group>
 						<Form.Group>
 							<Form.Button content="Submit" /> 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Input, Grid, Radio } from 'semantic-ui-react';
+import { Form, Grid } from 'semantic-ui-react';
 import { observer, inject } from 'mobx-react';
 import withAuthorization from '../sessionAcc';
 import { compose } from 'recompose';
@@ -11,7 +11,6 @@ class TdeeForm extends Component {
 	render() {
 		const { measStore, tdeeStore } = this.props
 		const { setValue, setBodyweight, value, totalCals } = tdeeStore
-		const setTargetsClick = measStore.setTargets()
 		
 			return (
 			<Grid>

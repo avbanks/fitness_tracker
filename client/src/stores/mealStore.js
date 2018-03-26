@@ -1,7 +1,6 @@
-import { autorun, observable, action, computed, runInAction, toJS } from 'mobx';
+import { observable, action, computed, runInAction } from 'mobx';
 import shortid from 'shortid';
 import firebase, { auth } from './firebase.js';
-import mealsFirebaseStore from '../stores/meals-firebase-store';
 
 class mealTrackStore {
 	
@@ -29,7 +28,6 @@ class mealTrackStore {
 		const _this = this
 		ref.once('value').then(snapshot => {
 			snapshot.forEach(childSnapshot => {
-				const childKey = childSnapshot.key
 				const childData = childSnapshot.val()
 				_this.meals.push(childData)
 				})
@@ -38,7 +36,6 @@ class mealTrackStore {
 	}
 	
 	@action setCurrentMeals = () => {
-		const ref = firebase.database().ref('users/'+ auth.currentUser['uid']+'/meals')
 		const day = this.date.toString().slice(0,15)
 		const meals = this.meals	
 		const newCurrent = []
@@ -115,8 +112,6 @@ class mealTrackStore {
 		const ref = firebase.database().ref('users/'+ auth.currentUser['uid']+'/meals')
 		ref.once('value', function(snapshot) {
 			snapshot.forEach(function(childSnapshot) {
-				const childKey = childSnapshot.key
-				const childData = childSnapshot.val()
 			})
 		}).then(ref.push(currentMeal)).then(() => this.setCurrentMeals())
 	}
@@ -151,7 +146,7 @@ class mealTrackStore {
 	}
 	
 	@computed get totalCalories(){
-		if(this.dailyMeals.length == 0) {
+		if(this.dailyMeals.length === 0) {
 			return 0	
 		}
 		let cals = 0;
