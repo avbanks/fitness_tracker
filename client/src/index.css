@@ -35,3 +35,15 @@ div#root {
 div.react-date-picker__calendar{
 	z-index: 1;
 }
+
+input.react-date-picker__button__input__year {
+	background: rgb(247,247,247);
+}
+
+input.react-date-picker__button__input__day {
+	background: rgb(247,247,247);
+}
+
+input.react-date-picker__button__input__month {
+	background: rgb(247,247,247);
+}
