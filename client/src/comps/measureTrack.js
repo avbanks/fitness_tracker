@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
 import { Table, Form } from 'semantic-ui-react';
-import moment from 'moment'
 import { compose } from 'recompose';
 import withAuthorization from './sessionAcc';
 import DateSelection from './datepicker';
@@ -31,7 +30,7 @@ class MeasTrack extends Component{
 						changeDays={changeDays} 
 						setDate={setDate} 
 					/>
-					<Form onSubmit={ () => { measStore.setDate(document.querySelector("[name='setDate']").value); measStore.addToWeightHistory()}}>
+					<Form onSubmit={ () => { measStore.setDate(date); measStore.addToWeightHistory()}}>
 						<Form.Group >
 							<Form.Input 
 								name="setWeight" 
@@ -39,11 +38,6 @@ class MeasTrack extends Component{
 								placeholder="lbs" 
 								onChange={ (e) =>  {measStore.setWeight(e.target.value)}}
 							/>		
-							<Form.Input 
-								name="setDate" 
-								label={'Enter Date'} 
-								defaultValue={moment().format('l')}
-							/>
 						</Form.Group>
 						<Form.Group>
 							<Form.Button content="Submit" /> 
