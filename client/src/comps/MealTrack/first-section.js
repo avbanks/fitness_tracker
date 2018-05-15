@@ -57,7 +57,7 @@ const FirstSection = (props) => {
 					/>
         </Form.Group>
       </Form>
-			<SecondSection setActions={props.setActions} setmealSubmit={props.setmealSubmit} />  
+			<SecondSection resetStore={props.resetStore} setActions={props.setActions} setmealSubmit={props.setmealSubmit} />  
 		</div>
   );
 };
