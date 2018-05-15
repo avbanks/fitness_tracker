@@ -9,12 +9,13 @@ class measStore {
 	@observable waist;
 	@observable hips;
 	@observable chest;
-	@observable measHistory = []	
-	@observable dailyMeas = {}
-	@observable date = '';
-	@observable weightHistory = [] 
+	@observable measHistory = [];
+	@observable dailyMeas = {};
+	@observable date = new Date();
+	@observable weightHistory = [];
 	@observable calorieGoals = null;
 	@observable targetWeight = null;
+	@observable currentMeas = null;
 	
 	@action setCalorieGoals = (value) => {
 		this.calorieGoals = value;
@@ -64,11 +65,21 @@ class measStore {
 	}
 
 	@action addToWeightHistory = () => {
+		const currentDate = this.date.toString().slice(0,15);
 		this.weightHistory = this.weightHistory.concat(
 			{'weight': this.weight,
-				'date': this.date
+				'date': currentDate 
 			})
 		}
+	
+	@action submitMeas = () => {
+		currentMeas = {'date': currentDate,
+									 'weight': this.weight
+		}
+		const ref = firebase.database().ref('users/'+auth.currentUser['uid']+'/meas')
+		ref.push(currentMeas)
+	}
+	
 	@computed get sortedWeightHistory(){
 		function sortFunction(a,b) {
 			const dateA = new Date(a.date).getTime();
@@ -79,6 +90,15 @@ class measStore {
 		return array.sort(sortFunction);
 	}
 	
+	@action changeDays = (days) => {
+		Date.prototype.changeDays = function(days) {
+			let dat = new Date(this.valueOf());
+			dat.setDate(dat.getDate() + days);
+			return dat
+		}
+		const newDate = this.date.changeDays(days)
+		this.date =	newDate
+	}
 	selection = {
 		"setWeight": this.setWeight,
 		"setDate": this.setDate,
