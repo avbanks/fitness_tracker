@@ -73,7 +73,7 @@ class measStore {
 		}
 	
 	@action submitMeas = () => {
-		currentMeas = {'date': currentDate,
+		const currentMeas = {'date': this.currentDate,
 									 'weight': this.weight
 		}
 		const ref = firebase.database().ref('users/'+auth.currentUser['uid']+'/meas')
