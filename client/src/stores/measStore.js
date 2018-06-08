@@ -1,4 +1,4 @@
-import { observable, action, computed } from 'mobx';
+import { observable, action, computed, runInAction } from 'mobx';
 import firebase, { auth } from './firebase.js';
 
 
@@ -16,6 +16,8 @@ class measStore {
 	@observable calorieGoals = null;
 	@observable targetWeight = null;
 	@observable currentMeas = null;
+	@observable loading = false;
+	@observable meas = [];
 	
 	@action setCalorieGoals = (value) => {
 		this.calorieGoals = value;
@@ -64,17 +66,55 @@ class measStore {
 		this.dailyMeas = ''
 	}
 
-	@action addToWeightHistory = () => {
-		const currentDate = this.date.toString().slice(0,15);
-		this.weightHistory = this.weightHistory.concat(
+	@action loadMeas = () => {
+		this.loading = true;
+		const ref = firebase.database().ref('users/'+auth.currentUser['uid']+'/meas');
+		const _this = this
+		ref.once('value').then(snapshot => {
+			snapshot.forEach(childSnapshot => {
+				const childData = childSnapshot.val()
+				_this.meas.push(childData)
+			})
+		}).then(() => {this.meas = _this.meas; runInAction(() => this.loading=false)})
+	}
+	
+	@action setCurrentMeas = () => {
+		const day = this.date.toString().slice(0,15);
+		const meas = this.meas; 
+		const newCurrent = [];
+		meas.toJS().forEach(meas => {
+			if(meas.date === day) {
+				newCurrent.push(meas);
+			}
+		})
+		this.currentMeas = newCurrent;
+	}
+	
+	@action addtoweighthistory = () => {
+		const currentdate = this.date.tostring().slice(0,15);
+		this.weighthistory = this.weighthistory.concat(
 			{'weight': this.weight,
-				'date': currentDate 
+				'date': currentdate 
 			})
 		}
+		
+	
+	@action deleteMeas = id => {
+		const ref = firebase.database().ref('users/'+auth.currentUser['uid']+'/meas');
+		ref.once('value').then(snapshot => {
+			snapshot.forEach(childSnapshot => {
+				if(childSnapshot.val().id === id) {
+					return
+				}
+			})
+		})
+	}
 	
 	@action submitMeas = () => {
-		const currentMeas = {'date': this.currentDate,
-									 'weight': this.weight
+		console.log(this.currentDate)
+		const currentDate = this.date.toString()
+		const currentMeas = {date: currentDate,
+									 weight : this.weight
 		}
 		const ref = firebase.database().ref('users/'+auth.currentUser['uid']+'/meas')
 		ref.push(currentMeas)

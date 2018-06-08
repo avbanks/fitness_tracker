@@ -30,7 +30,7 @@ class MeasTrack extends Component{
 						changeDays={changeDays} 
 						setDate={setDate} 
 					/>
-					<Form onSubmit={ () => { measStore.setDate(date); measStore.addToWeightHistory()}}>
+					<Form onSubmit={ () => { measStore.setDate(date); measStore.submitMeas()}}>
 						<Form.Group >
 							<Form.Input 
 								name="setWeight" 

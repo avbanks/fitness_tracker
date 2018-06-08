@@ -44,7 +44,7 @@ class mealTrackStore {
 				newCurrent.push(meal)
 			}
 		})
-		this.currentMeals = newCurrent 
+		this.currentMeals = newCurrent; 
 	}
 
 	@action setActions = (observ, value) => {
@@ -110,16 +110,13 @@ class mealTrackStore {
 		//this.dailyMeals = this.dailyMeals.concat(currentMeal)	
  		
 		const ref = firebase.database().ref('users/'+ auth.currentUser['uid']+'/meals')
-		ref.once('value', function(snapshot) {
-			snapshot.forEach(function(childSnapshot) {
-			})
-		}).then(ref.push(currentMeal)).then(() => this.setCurrentMeals())
+		ref.push(currentMeal).then(() => this.setCurrentMeals())
 	}
 
 	@action deleteMeal = id => {
 		const ref = firebase.database().ref('users/'+ auth.currentUser['uid']+'/meals')
 		ref.once('value').then(snapshot => {
-		snapshot.forEach(childSnapshot => {
+			snapshot.forEach(childSnapshot => {
 				if(childSnapshot.val().id === id) {
 					ref.child(childSnapshot.key).remove()
 					return
